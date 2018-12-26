@@ -1,4 +1,40 @@
-<p>
-  layout-page works!
-</p>
-<router-outlet></router-outlet>
+<div class="main-container">
+    <mat-toolbar color="primary" class="topbar telative">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">
+                <!-- Logo icon -->
+                <b>
+                    <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo">
+                    <img src="assets/images/c3.png" alt="homepage" class="light-logo" style="width:40px;">
+                </b>
+                <!--End Logo icon -->
+                <!-- Logo text -->
+                <span fxShow="false" fxShow.gt-xs>
+                    <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo">
+                    <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" style="width:160px;">
+                </span> </a>
+        </div>
+
+        <button mat-icon-button (click)="snav.toggle()" value="sidebarclosed">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span fxFlex style="flex: 1 1 0%;box-sizing: border-box;"></span>
+
+        <veh-topnav></veh-topnav>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+        <mat-sidenav #snav id="snav" class="dark-sidebar pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'"
+            fixedTopGap="0" [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches">
+            <veh-sidebar></veh-sidebar>
+        </mat-sidenav>
+
+        <mat-sidenav-content class="page-wrapper">
+            <div class="page-content">
+                <router-outlet>
+                    <veh-spinner></veh-spinner>
+                </router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
