@@ -1,7 +1,23 @@
-<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5"> <img src="assets/images/users/1.jpg" alt="user" class="profile-pic"> </button>
+<button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="language">
+    <mat-icon>language</mat-icon>
+</button>
+<mat-menu #language="matMenu">
+    <button mat-menu-item (click)="changeLang('en')">
+        <span>{{ 'English' }}</span>
+    </button>
+    <button mat-menu-item (click)="changeLang('sv')">
+        <span>{{ 'Swedish' }}</span>
+    </button>
+</mat-menu>
+<button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="profile">
+    <mat-icon>account_circle</mat-icon>
+</button>
 <mat-menu #profile="matMenu" class="mymegamenu">
+    
     <button mat-menu-item>
-        <mat-icon>settings</mat-icon> Settings </button>
+        <mat-icon>settings</mat-icon> Settings
+    </button>
     <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon> Sign Out </button>
+        <mat-icon>exit_to_app</mat-icon> Sign Out
+    </button>
 </mat-menu>
