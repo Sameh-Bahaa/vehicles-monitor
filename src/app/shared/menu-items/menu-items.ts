@@ -9,7 +9,7 @@ export interface Menu {
 
 const MENUITEMS = [
   { state: 'starter', type: 'link', name: 'Dashboard', icon: 'av_timer' },
-  { state: 'button', type: 'link', name: 'Vehicles List', icon: 'local_car_wash' }
+  { state: 'vehicles', type: 'link', name: 'Vehicles List', icon: 'local_car_wash' }
 ];
 
 @Injectable()

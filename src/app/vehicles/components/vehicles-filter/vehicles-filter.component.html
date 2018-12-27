@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-content>
+      <mat-card-title>Vehicles Filter</mat-card-title>
+    
+
+    <!-- Row -->
+    <div fxLayout="row" fxLayoutWrap="wrap">
+      <!-- column -->
+      <div fxFlex.gt-sm="50" fxFlex.gt-xs="50">
+        Now you can filter our monitored vichels by their Status or by the Owner
+        <br /><br />
+
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Filter </mat-panel-title>
+              <mat-panel-description> Click here to open </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field>
+              <input matInput placeholder="Status">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Owner">
+            </mat-form-field>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
