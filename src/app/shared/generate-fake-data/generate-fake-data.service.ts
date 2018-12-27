@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-var fakerAPI = require('faker');
+import * as fakerAPI from 'faker'
 
 export interface VehicleDto {
     vin: string;
     name: string;
     address: string;
     regNum: string;
-    status: string;
+    status: boolean;
 }
 var myVehicles: VehicleDto[] = [];
 
