@@ -3,6 +3,7 @@
     <mat-card-title>Our Vehicles</mat-card-title>
     <mat-card-subtitle><code class="">Real-time updates!</code></mat-card-subtitle>
     <!-- Row -->
+    <button mat-raised-button (click)="onloadVehiclesClick()" id="toggle-linear">Load Data</button>
     <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value, 'name')" placeholder="Filter by name">
     </mat-form-field>

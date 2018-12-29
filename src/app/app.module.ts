@@ -7,6 +7,8 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VehiclesModule } from './vehicles/vehicles.module';
+import { VehiclesStoreModule } from './store/store.module';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,9 @@ import { VehiclesModule } from './vehicles/vehicles.module';
 
     // App
     AppRoutingModule,
+
+    //store
+    VehiclesStoreModule
     
   ],
   providers: [],

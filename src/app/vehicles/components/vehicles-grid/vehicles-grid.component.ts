@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { GenerateFakeDataService, VehicleDto } from 'src/app/shared/generate-fake-data/generate-fake-data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'veh-vehicles-grid',
@@ -10,30 +11,35 @@ import { GenerateFakeDataService, VehicleDto } from 'src/app/shared/generate-fak
 export class VehiclesGridComponent implements OnInit {
   displayedColumns = ['vin', 'name', 'address', 'regNum', 'status'];
   dataSource: MatTableDataSource<VehicleDto>;
-
+  @Output() loadVehicles = new EventEmitter<void>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @Input() set items(val: VehicleDto[]) {
+    if (val) {
+      this.dataSource = new MatTableDataSource(val);
+      this.dataSource.data = val;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+  }
+
 
   constructor(faker: GenerateFakeDataService) {
-    var myData = faker.getRandomVehiclesData();
-    this.dataSource = new MatTableDataSource(myData);
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string, column: string) {
-  
+
     if (column == 'status') {
       this.dataSource.filterPredicate =
-      (data: VehicleDto, filter: string) => { console.log(data, data[column]); return data[column] == filter};
+        (data: VehicleDto, filter: string) => { return data[column] };
     } else {
       this.dataSource.filterPredicate =
-      (data: VehicleDto, filter: string) => { console.log(data, data[column]);return data[column].indexOf(filter) != -1};
+        (data: VehicleDto, filter: string) => { return data[column].indexOf(filter) != -1 };
     }
-    
+
 
     filterValue = filterValue.trim(); // Remove whitespace
     //filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
@@ -41,5 +47,9 @@ export class VehiclesGridComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  onloadVehiclesClick() {
+    this.loadVehicles.emit();
   }
 }
