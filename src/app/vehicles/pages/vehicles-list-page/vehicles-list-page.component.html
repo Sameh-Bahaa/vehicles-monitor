@@ -2,13 +2,8 @@
 <div fxLayout="row" fxLayoutWrap="wrap">
   <!-- column -->
   <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
-      
-
-    
       <veh-vehicles-filter></veh-vehicles-filter>
-      <veh-vehicles-grid></veh-vehicles-grid>
-    
-
+      <veh-vehicles-grid [items]="vehicles$ | async" (loadVehicles)="onLoadVehicles()"></veh-vehicles-grid>
   </div>
   <!-- column -->
 </div>
