@@ -28,7 +28,7 @@ export function vehiclesReducers(state: VehiclesState, action: PayloadAction<any
             return {
                 ...state,
                 items: [
-                    ...state.items,
+                    //...state.items,
                     ...action.payload
                 ],
                 modelState: null,

@@ -3,6 +3,7 @@ import { VehicleDto } from 'src/app/shared/generate-fake-data/generate-fake-data
 
 export interface VehiclesState {
     items: VehicleDto[],
+    filter: VehicleDto;
     selectedId?: number;
     modelState?: ModelState;
     isSuccess: boolean;
@@ -10,5 +11,6 @@ export interface VehiclesState {
 
 export const VehiclesInitialState: VehiclesState = {
     items: [],
+    filter: null,
     isSuccess: false
 };

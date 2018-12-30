@@ -1,32 +1,53 @@
-<mat-card>
-  <mat-card-content>
+<form [formGroup]='filterForm'>
+  <mat-card>
+    <mat-card-content>
       <mat-card-title>Vehicles Filter</mat-card-title>
-    
-
-    <!-- Row -->
-    <div fxLayout="row" fxLayoutWrap="wrap">
-      <!-- column -->
-      <div fxFlex.gt-sm="50" fxFlex.gt-xs="50">
-        Now you can filter our monitored vichels by their Status or by the Owner
-        <br /><br />
-
-        <mat-accordion>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title> Filter </mat-panel-title>
-              <mat-panel-description> Click here to open </mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-form-field>
-              <input matInput placeholder="Status">
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Owner">
-            </mat-form-field>
-          </mat-expansion-panel>
-        </mat-accordion>
 
 
+      <!-- Row -->
+      <div fxLayout="row" fxLayoutWrap="wrap">
+        <!-- column -->
+        <div fxFlex.gt-sm="50" fxFlex.gt-xs="50">
+          Now you can filter our monitored vichels by their Status or by the Owner
+          <br /><br />
+
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title> Filter </mat-panel-title>
+                <mat-panel-description> Click here to open </mat-panel-description>
+              </mat-expansion-panel-header>
+              <section class="example-section">
+                <mat-form-field class="example-margin">
+                  <input matInput placeholder="VIN" aria-label="VIN" [matAutocomplete]="autoVIN" formControlName="VIN" />
+                  <mat-autocomplete #autoVIN="matAutocomplete" >
+                    <mat-option *ngFor="let veh of filteredVehicles | async" [value]="veh.vin" (onSelectionChange)="filterGrid(veh)">
+                      <span>{{ veh.vin }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+
+                <mat-form-field class="example-margin"> 
+                  <input matInput placeholder="Name" aria-label="Name" [matAutocomplete]="autoName" formControlName="name" />
+                  <mat-autocomplete #autoName="matAutocomplete">
+                    <mat-option *ngFor="let veh of filteredVehicles | async" [value]="veh.name">
+                      <img style="vertical-align:middle;" aria-hidden src="{{veh.avatar}}" height="25" />
+                      <span>{{ veh.name }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field class="example-margin">
+                  <mat-select placeholder="Status" formControlName="status">
+                    <mat-option *ngFor="let veh of filteredVehicles | async" [value]="veh.status">
+                      {{veh.status}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </section>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
       </div>
-    </div>
-  </mat-card-content>
-</mat-card>
+    </mat-card-content>
+  </mat-card>
+</form>

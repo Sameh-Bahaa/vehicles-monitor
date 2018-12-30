@@ -9,6 +9,7 @@ export interface VehicleDto {
     address: string;
     regNum: string;
     status: boolean;
+    avatar: string;
 }
 var myVehicles: VehicleDto[] = [];
 
@@ -22,7 +23,7 @@ export class GenerateFakeDataService {
         return of(myVehicles);
     }
 
-    generateData(){
+    generateData() {
         for (let index = 0; index < 15; index++) {
             myVehicles.push(
                 {
@@ -31,10 +32,18 @@ export class GenerateFakeDataService {
                     vin: fakerAPI.finance.iban(),
                     status: fakerAPI.random.boolean(),
                     address: fakerAPI.address.streetAddress() + ' ' + fakerAPI.address.city(),
-                    regNum: fakerAPI.finance.bic()
+                    regNum: fakerAPI.finance.bic(),
+                    avatar: fakerAPI.internet.avatar()
                 }
             );
 
         }
+    }
+
+    filterVehicles(name: string) {
+        let result = myVehicles.filter(function(el) {
+            return el.name.toLowerCase().indexOf(name.toLowerCase()) > -1;
+        });
+        return of(result)
     }
 }
