@@ -38,6 +38,22 @@ export class VehiclesEffectsService {
     }
 
     @Effect()
+    onFilterVehicles(): Observable<ActionCreator<any>> {
+        return this.actions$.pipe(
+            ofType(this.itemActions.FILTER),
+            mergeMap(action =>
+                this.fakeProxy.filterVehicles('Billy')
+                .pipe(
+                    map(res => {
+                        console.log(action)
+                        return this.itemActions.createAddManyItemsAction(res);
+                    })
+                    , catchError(err => of(this.itemActions.createOperationFailedAction(err)))
+                )
+            ));
+    }
+
+    @Effect()
     onAddManyVehicles(): Observable<ActionCreator<any>> {
         return this.actions$.pipe(
             ofType(this.itemActions.ADD),
