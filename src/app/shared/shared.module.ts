@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
 import { MaterialModule } from './material/material.module';
 import { MenuItems } from './menu-items/menu-items';
-import { GenerateFakeDataService } from './generate-fake-data/generate-fake-data.service';
 
 @NgModule({
   declarations: [],
@@ -16,6 +15,6 @@ import { GenerateFakeDataService } from './generate-fake-data/generate-fake-data
   exports: [
     MaterialModule
   ],
-  providers: [MenuItems, GenerateFakeDataService]
+  providers: [MenuItems]
 })
 export class SharedModule { }

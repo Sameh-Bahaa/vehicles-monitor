@@ -1,9 +1,9 @@
 import { ModelState } from "../../state-models";
-import { VehicleDto } from 'src/app/shared/generate-fake-data/generate-fake-data.service';
+import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
 
 export interface VehiclesState {
-    items: VehicleDto[],
-    filter: VehicleDto;
+    items: vehicleDto[],
+    filter: vehicleDto;
     selectedId?: number;
     modelState?: ModelState;
     isSuccess: boolean;
