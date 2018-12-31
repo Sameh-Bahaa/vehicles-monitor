@@ -1,12 +1,12 @@
 import { BaseActions } from "../../_super-classes/base-actions";
 import { Injectable } from "@angular/core";
-import { VehicleDto } from 'src/app/shared/generate-fake-data/generate-fake-data.service';
+import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
 
 
 
 
 @Injectable()
-export class VehiclesActions extends BaseActions<VehicleDto, VehicleDto, VehicleDto> {
+export class VehiclesActions extends BaseActions<vehicleDto, vehicleDto, vehicleDto> {
 
     constructor() {
         super("vehicles")

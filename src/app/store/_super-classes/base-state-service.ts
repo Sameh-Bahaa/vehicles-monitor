@@ -87,4 +87,7 @@ export class BaseStateService<STATE, INDTO extends RecordIdDto, OUTDTO extends R
   dispatchUpdate(item: INDTO) {
     this.store.dispatch(this.actionService.createUpdateItemAction(item));
   }
+  dispatchUpdateSuccess(item: INDTO) {
+    this.store.dispatch(this.actionService.createUpdateSuccessAction(item));
+  }
 }

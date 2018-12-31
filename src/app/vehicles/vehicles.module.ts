@@ -7,6 +7,7 @@ import { VehiclesGridComponent } from './components/vehicles-grid/vehicles-grid.
 import { MaterialModule } from '../shared/material/material.module';
 import { VehiclesFilterComponent } from './components/vehicles-filter/vehicles-filter.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [VehiclesListPageComponent, VehiclesGridComponent, VehiclesFilterComponent],
@@ -15,8 +16,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     VehiclesRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    CoreModule
   ]
 })
 export class VehiclesModule { }

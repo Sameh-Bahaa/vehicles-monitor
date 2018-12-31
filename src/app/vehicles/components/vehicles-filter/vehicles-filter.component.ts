@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable, pipe } from 'rxjs';
 import { startWith, map, debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
 import { VehiclesStateService } from 'src/app/store/vehicles/all-vehicles/state-service';
-import { VehicleDto } from 'src/app/shared/generate-fake-data/generate-fake-data.service';
+import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
 
 export class State {
   constructor(public name: string, public population: string, public flag: string) { }
@@ -15,7 +15,7 @@ export class State {
   styleUrls: ['./vehicles-filter.component.scss']
 })
 export class VehiclesFilterComponent implements OnInit {
-  filteredVehicles: Observable<VehicleDto[]>;
+  filteredVehicles: Observable<vehicleDto[]>;
   filterForm: FormGroup;
 
   constructor(private fb: FormBuilder, private service: VehiclesStateService) {
@@ -41,8 +41,7 @@ export class VehiclesFilterComponent implements OnInit {
   filterStates(dto: any) {
     return this.service.selectItems().pipe(
       map(vehicles => vehicles.filter( v=> 
-         ((v.vin) ? v.vin.toLowerCase().includes(dto.VIN) : true ) ||
-         ((v.vin) ? v.name.toLowerCase().includes(dto.name): true) 
+         ((v.vin) ? v.vin.toLowerCase().includes(dto.VIN) : true )
       ))
     );
   }

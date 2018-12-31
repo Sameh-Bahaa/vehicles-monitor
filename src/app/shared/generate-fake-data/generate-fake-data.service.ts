@@ -1,24 +1,17 @@
 import { Injectable } from '@angular/core';
 import * as fakerAPI from 'faker'
 import { of, Observable } from 'rxjs';
+import { vehicleDto } from '../DTOs/vehicles';
 
-export interface VehicleDto {
-    id: number;
-    vin: string;
-    name: string;
-    address: string;
-    regNum: string;
-    status: boolean;
-    avatar: string;
-}
-var myVehicles: VehicleDto[] = [];
+
+var myVehicles: vehicleDto[] = [];
 
 @Injectable()
 export class GenerateFakeDataService {
     constructor() {
     }
 
-    getObservableRandomVehiclesData(): Observable<VehicleDto[]> {
+    getObservableRandomVehiclesData(): Observable<vehicleDto[]> {
         this.generateData();
         return of(myVehicles);
     }
@@ -28,12 +21,12 @@ export class GenerateFakeDataService {
             myVehicles.push(
                 {
                     id: myVehicles.length + 1,
-                    name: fakerAPI.name.findName(),
+                    client: fakerAPI.random.number({min: 1, max: 6}),
                     vin: fakerAPI.finance.iban(),
-                    status: fakerAPI.random.boolean(),
-                    address: fakerAPI.address.streetAddress() + ' ' + fakerAPI.address.city(),
+                    status: fakerAPI.random.number({min: 1, max: 4}),
                     regNum: fakerAPI.finance.bic(),
-                    avatar: fakerAPI.internet.avatar()
+                    avatar: fakerAPI.internet.avatar(),
+                    make: fakerAPI.internet.userName()
                 }
             );
 
@@ -41,8 +34,8 @@ export class GenerateFakeDataService {
     }
 
     filterVehicles(name: string) {
-        let result = myVehicles.filter(function(el) {
-            return el.name.toLowerCase().indexOf(name.toLowerCase()) > -1;
+        let result = myVehicles.filter(function (el) {
+            return el.vin.toLowerCase().indexOf(name.toLowerCase()) > -1;
         });
         return of(result)
     }
