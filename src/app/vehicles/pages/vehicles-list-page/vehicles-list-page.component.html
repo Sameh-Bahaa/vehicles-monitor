@@ -4,7 +4,7 @@
   <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
     <veh-firebase-backend-simulator [isUpdateRandomVehicles]="isUpdateRandomVehicles$ | async" [isStartListening]="isStartListening$ | async"></veh-firebase-backend-simulator>
       <veh-vehicles-filter [clients]="clients$ | async" [status]="status$ | async"></veh-vehicles-filter>
-      <veh-vehicles-grid [items]="vehicles$ | async" (loadVehicles)="onLoadVehicles()"></veh-vehicles-grid>
+      <veh-vehicles-grid [items]="vehicles$ | async" (isRealTime)="onIsRealTimeChanged($event)"></veh-vehicles-grid>
   </div>
   <!-- column -->
 </div>

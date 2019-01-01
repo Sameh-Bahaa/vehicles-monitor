@@ -16,23 +16,19 @@ export class VehiclesListPageComponent implements OnInit, OnDestroy {
 
   isUpdateRandomVehicles$: Observable<boolean>;
   isStartListening$:  Observable<boolean>;
-  toggleEnable: boolean;
 
   constructor(private service: VehiclesStateService, private fbService: FirebaseService) {
     this.vehicles$ = this.service.selectItems();
     this.clients$ = this.fbService.getAllClients();
     this.status$ = this.fbService.getAllStatus();
-    this.toggleEnable = false;
   }
 
   ngOnInit() {
   }
 
-  onLoadVehicles() {
-    this.toggleEnable = !this.toggleEnable;
-    console.log(` toggle ${this.toggleEnable}`);
-    this.isStartListening$ = of(this.toggleEnable);
-    this.isUpdateRandomVehicles$ = of(this.toggleEnable);
+  onIsRealTimeChanged(isRealTime: boolean) {
+    this.isStartListening$ = of(isRealTime);
+    this.isUpdateRandomVehicles$ = of(isRealTime);
   }
 
   ngOnDestroy(): void {

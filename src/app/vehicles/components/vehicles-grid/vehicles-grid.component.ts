@@ -11,7 +11,7 @@ import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
 export class VehiclesGridComponent implements OnInit {
   displayedColumns = ['vin', 'client', 'regNum', 'make', 'status'];
   dataSource: MatTableDataSource<vehicleDto>;
-  @Output() loadVehicles = new EventEmitter<void>();
+  @Output() isRealTime = new EventEmitter<boolean>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @Input() set items(val: vehicleDto[]) {
@@ -32,6 +32,10 @@ export class VehiclesGridComponent implements OnInit {
 
 
   onloadVehiclesClick() {
-    this.loadVehicles.emit();
+    
+  }
+
+  onChangeRealTime(isChecked: boolean) {
+    this.isRealTime.emit(isChecked);
   }
 }
