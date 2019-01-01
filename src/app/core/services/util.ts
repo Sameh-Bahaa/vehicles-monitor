@@ -1,3 +1,4 @@
+  
 //#region Array-Functions
 
 export function insertByIndex(state, newItem, insertAt) {
@@ -39,13 +40,13 @@ export function filterAll<T>(state: Array<T>, filterObj: any) {
 
 export function filter<T>(state: Array<T>, prop: string, valuesToCompare: Array<string>) {
   if (valuesToCompare.hasOwnProperty(prop) && valuesToCompare[prop] && valuesToCompare[prop].length > 0)
-    return [...state.filter(item => { return valuesToCompare[prop].some(data => data === item[prop]) })];
+    return [...state.filter(item => { return item[prop].toLowerCase().includes(valuesToCompare[prop].toLowerCase()) })];
   return state;
 }
 
 export function filterNumbers<T>(state: Array<T>, prop: string, valuesToCompare: Array<string>) {
-  if (valuesToCompare.hasOwnProperty(prop) && valuesToCompare[prop])
-    return [...state.filter(item => { return valuesToCompare[prop].some(data => data === item[prop]) })];
+  if (valuesToCompare.hasOwnProperty(prop) && valuesToCompare[prop] && (typeof(valuesToCompare[prop] == "number")))
+    return [...state.filter(item => { return item[prop] == valuesToCompare[prop] })];
   return state;
 }
 
@@ -61,3 +62,4 @@ export function dynamicSort(property: string) {
   }
 }
 //#endregion
+

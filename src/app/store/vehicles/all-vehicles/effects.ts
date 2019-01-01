@@ -8,6 +8,7 @@ import { PayloadAction } from "../../PayloadAction";
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { map, mergeMap, withLatestFrom, switchMap } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/core/firebase/firebase.service';
+import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
 
 const emptyAction = { type: '[Vehicle] empty', payload: { list: null, count: null } };
 
