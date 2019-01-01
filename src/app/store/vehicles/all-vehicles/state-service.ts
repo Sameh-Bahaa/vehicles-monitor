@@ -4,10 +4,11 @@ import { BaseStateService } from '../../_super-classes/base-state-service';
 import { Injectable } from '@angular/core';
 import { State } from '../../state';
 import { VehiclesActions } from './actions';
-import { VehicleDto } from 'src/app/shared/generate-fake-data/generate-fake-data.service';
+import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
+import { filterVehicleDto } from './state';
 
 @Injectable()
-export class VehiclesStateService extends BaseStateService<State, VehicleDto, VehicleDto, VehicleDto> {
+export class VehiclesStateService extends BaseStateService<State, vehicleDto, vehicleDto, any> {
 
     constructor(
         protected store: Store<State>,
@@ -18,5 +19,18 @@ export class VehiclesStateService extends BaseStateService<State, VehicleDto, Ve
     dispatchLoad() {
         if (!this.selectIsItemsLoaded())
             super.dispatchLoad();
+    }
+
+    dispatcLoadInitial(data: any) {
+        if (!this.selectIsItemsLoaded()) {
+            this.store.dispatch(this.actionService.createAddManyItemsAction(data))
+        }
+        if (!this.selectIsAllItemsLoaded()) {
+            this.store.dispatch(this.actionService.createAddAllItemsAction(data))
+        }
+    }
+
+    dispatchUpdateSuccess(data: vehicleDto) {
+        this.store.dispatch(this.actionService.createUpdateSuccessAction(data));
     }
 }

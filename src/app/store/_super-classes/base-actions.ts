@@ -24,6 +24,9 @@ export abstract class BaseActions<INDTO, OUTDTO, FILTERDTO> {
     //Lookups Action
     LOADLOOKUPS = `[${this.moduleName}] LOAD_LOOKUPS`;
 
+    LOAD_ALL = `[${this.moduleName}] Load All`;
+    ADD_ALL_ITEMS = `[${this.moduleName}] Add All Items`;
+
     //Basic Actions Creators
     createLoadAction = ActionCreatorFactory.create<void>(this.LOAD);
     createFilterAction = ActionCreatorFactory.create<FILTERDTO>(this.FILTER);
@@ -42,5 +45,8 @@ export abstract class BaseActions<INDTO, OUTDTO, FILTERDTO> {
 
     //Lookups Actions
     createLoadLookupsAction = ActionCreatorFactory.create(this.LOADLOOKUPS)
+
+    createLoadAllAction = ActionCreatorFactory.create<void>(this.LOAD_ALL);
+    createAddAllItemsAction = ActionCreatorFactory.create<OUTDTO>(this.ADD_ALL_ITEMS);
 
 }

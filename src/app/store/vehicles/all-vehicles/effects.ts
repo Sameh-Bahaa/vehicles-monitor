@@ -3,13 +3,11 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { State } from "../../state";
 import { VehiclesActions } from "./actions";
-import { Observable } from "rxjs";
 import { of } from "rxjs";
-import { ActionCreator } from "../../_super-classes/action-creator";
 import { PayloadAction } from "../../PayloadAction";
-import { GenerateFakeDataService } from 'src/app/shared/generate-fake-data/generate-fake-data.service';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { map, mergeMap, withLatestFrom, switchMap } from 'rxjs/operators';
+import { FirebaseService } from 'src/app/core/firebase/firebase.service';
 
 const emptyAction = { type: '[Vehicle] empty', payload: { list: null, count: null } };
 
@@ -20,60 +18,91 @@ export class VehiclesEffectsService {
         private actions$: Actions,
         private store: Store<State>,
         private itemActions: VehiclesActions,
-        private fakeProxy: GenerateFakeDataService
+        private fbService: FirebaseService
     ) {
     }
-    @Effect()
-    onLoadVehicles(): Observable<ActionCreator<any>> {
-        return this.actions$.pipe(
-            ofType(this.itemActions.LOAD),
-            mergeMap(action =>
-                this.fakeProxy.getObservableRandomVehiclesData().pipe(
-                    map(res => {
-                        return this.itemActions.createAddManyItemsAction(res);
-                    })
-                    , catchError(err => of(this.itemActions.createOperationFailedAction(err)))
-                )
-            ));
-    }
+    // @Effect()
+    // onLoadVehicles(): Observable<ActionCreator<any>> {
+    //     return this.actions$.pipe(
+    //         ofType(this.itemActions.LOAD),
+    //         mergeMap(action =>
+    //             this.fakeProxy.getObservableRandomVehiclesData().pipe(
+    //                 map(res => {
+    //                     return this.itemActions.createAddManyItemsAction(res);
+    //                 })
+    //                 , catchError(err => of(this.itemActions.createOperationFailedAction(err)))
+    //             )
+    //         ));
+    // }
 
-    @Effect()
-    onFilterVehicles(): Observable<ActionCreator<any>> {
-        return this.actions$.pipe(
-            ofType(this.itemActions.FILTER),
-            mergeMap(action =>
-                this.fakeProxy.filterVehicles('Billy')
-                .pipe(
-                    map(res => {
-                        console.log(action)
-                        return this.itemActions.createAddManyItemsAction(res);
-                    })
-                    , catchError(err => of(this.itemActions.createOperationFailedAction(err)))
-                )
-            ));
-    }
 
-    @Effect()
-    onAddManyVehicles(): Observable<ActionCreator<any>> {
-        return this.actions$.pipe(
-            ofType(this.itemActions.ADD),
-            mergeMap(action => {
-                return this.fakeProxy.getObservableRandomVehiclesData().pipe(
-                    map(res => {
-                        return this.itemActions.createAddManyItemsAction(res);
-                    })
-                    , catchError(err => of(this.itemActions.createOperationFailedAction(err)))
-                )
-            }
-            ));
-    }
+    // @Effect()
+    // onFilterVehicles(): Observable<ActionCreator<any>> {
+    //     return this.actions$.pipe(
+    //         ofType(this.itemActions.FILTER),
+    //         mergeMap(action =>
+    //             this.fbService.getAllVehicles()
+    //                 .pipe(
+    //                     map(res => {
+
+    //                         let allVehicles = (res.val() as vehicleDto[]);
+    //                         allVehicles = (allVehicles[0]) ? allVehicles : allVehicles.slice(1);
+    //                         let filtered = allVehicles;
+    //                         let filters = action["payload"];
+
+    //                         // let ff = allVehicles.filter(v => {
+    //                         //     if (filters)
+    //                         //         Object.keys(filters).forEach(key => {
+    //                         //             return (v[key] as string).toLowerCase().includes(filters[key].toLowerCase())
+    //                         //         });
+    //                         // });
+    //                         // console.log(ff)
+
+
+    //                         // if(!filters && filters != null)
+    //                         //  filtered = allVehicles.filter(i =>
+    //                         //     (filters.vin && i.vin.toLowerCase().includes(filters.vin.toLowerCase())) &&
+    //                         //     (filters.client && i.client == filters.client || true) &&
+    //                         //     (filters.status && i.status == filters.status || true)
+    //                         //     );
+
+    //                         if(!filters && filters != null)
+    //                         filtered =  allVehicles.filter(item =>
+    //                             Object.keys(filters)
+    //                               .map(keyToFilterOn =>
+    //                                 item[keyToFilterOn] == filters[keyToFilterOn] 
+    //                               )
+    //                               .reduce((x, y) => x && y, true),
+    //                           );
+    //                         console.log(filtered)
+    //                         return this.itemActions.createAddManyItemsAction(filtered);
+    //                     })
+    //                     , catchError(err => of(this.itemActions.createOperationFailedAction(err)))
+    //                 )
+    //         ));
+    // }
+
+    // @Effect()
+    // onAddManyVehicles(): Observable<ActionCreator<any>> {
+    //     return this.actions$.pipe(
+    //         ofType(this.itemActions.ADD),
+    //         mergeMap(action => {
+    //             return this.fakeProxy.getObservableRandomVehiclesData().pipe(
+    //                 map(res => {
+    //                     return this.itemActions.createAddManyItemsAction(res);
+    //                 })
+    //                 , catchError(err => of(this.itemActions.createOperationFailedAction(err)))
+    //             )
+    //         }
+    //         ));
+    // }
 
     @Effect()
     onFailed() {
         return this.actions$.pipe(
             ofType(this.itemActions.FAILED),
             mergeMap(action => {
-                console.log((action as PayloadAction<any>));
+                console.log((action as PayloadAction<any>).payload);
                 return of(emptyAction)
             })
         );

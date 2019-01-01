@@ -25,6 +25,14 @@ export class BaseStateService<STATE, INDTO extends RecordIdDto, OUTDTO extends R
     return result;
   }
 
+  selectIsAllItemsLoaded(): boolean {
+    var result = false;
+    this.store.select(s => eval(`s.${this.modulePath}.allItems`)).subscribe(r => {
+      result = (r.length > 0)
+    })
+    return result;
+  }
+
   selectItem(id: number): Observable<INDTO> {
     return this.store
       .select(s => eval(`s.${this.modulePath}.items`))

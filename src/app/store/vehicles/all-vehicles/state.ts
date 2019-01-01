@@ -1,16 +1,24 @@
 import { ModelState } from "../../state-models";
-import { VehicleDto } from 'src/app/shared/generate-fake-data/generate-fake-data.service';
+import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
 
 export interface VehiclesState {
-    items: VehicleDto[],
-    filter: VehicleDto;
+    allItems: vehicleDto[];
+    items: vehicleDto[],
+    filter: filterVehicleDto;
     selectedId?: number;
     modelState?: ModelState;
     isSuccess: boolean;
 };
 
 export const VehiclesInitialState: VehiclesState = {
+    allItems: [],
     items: [],
     filter: null,
     isSuccess: false
+};
+
+export interface filterVehicleDto{
+    vin : string;
+    client: number;
+    status: number
 };
