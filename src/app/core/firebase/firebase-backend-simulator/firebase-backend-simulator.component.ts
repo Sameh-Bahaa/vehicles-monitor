@@ -8,7 +8,8 @@ import { VehiclesStateService } from 'src/app/store/vehicles/all-vehicles/state-
 
 @Component({
   selector: 'veh-firebase-backend-simulator',
-  template: ''
+  templateUrl: './firebase-backend-simulator.component.html',
+  styleUrls: ['./firebase-backend-simulator.component.scss']
 })
 export class FirebaseBackendSimulatorComponent implements OnInit {
   @Input() set isUpdateRandomVehicles(val: boolean) {

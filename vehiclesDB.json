@@ -1,6 +1,6 @@
 {
-    "vehicles": [
-        {
+    "vehicles": {
+        "1": {
             "id": 1,
             "vin": "AD8027002005948Q87291563",
             "status": 1,
@@ -9,7 +9,7 @@
             "make": "KOENIGSEGG",
             "avatar": "https://i.pinimg.com/236x/ea/7f/12/ea7f12e965b319a447eca8684dddff67--peanut-butter-koenigsegg.jpg"
         },
-        {
+        "2": {
             "id": 2,
             "vin": "KW13GYLG6X7260B8WRJ58G3W21445E",
             "status": 1,
@@ -18,7 +18,7 @@
             "make": "VOLVO",
             "avatar": "https://www.roosmalen.nl/vanroosmalen/images/nieuws/volvo-persbericht-verkooprecord.jpg"
         },
-        {
+        "3": {
             "id": 3,
             "vin": "IT36M9002005071UE0W50F76629",
             "status": 2,
@@ -27,173 +27,173 @@
             "make": "SAAB",
             "avatar": "https://www.autozin.com/imagesl/027120171109/200_5a047be111a70.jpg"
         },
-        {
+        "4": {
             "id": 4,
             "vin": "NO8201507017045",
             "status": 1,
             "regNum": "JTKUGBE1815",
             "client": 4,
-            "make" : "ESTHER",
-            "avatar" : "https://lh3.googleusercontent.com/4J--dRwX5HO3b5F8WByGRyl9EGPrkY1RWLWLaZJ9lpkUF1VtIgp4N0GynNuAgCT2ZCo5uCI=s128"
+            "make": "ESTHER",
+            "avatar": "https://lh3.googleusercontent.com/4J--dRwX5HO3b5F8WByGRyl9EGPrkY1RWLWLaZJ9lpkUF1VtIgp4N0GynNuAgCT2ZCo5uCI=s128"
         },
-        {
+        "5": {
             "id": 5,
             "vin": "AZ38U98330619197400800980643",
             "status": 2,
             "regNum": "DLOOGWK1",
             "client": 5,
-            "make" : "CARESTO",
+            "make": "CARESTO",
             "avatar": "http://tuningcult.com/wp-content/uploads/2014/10/Lamborghini-Aventador-Mansory-1-200x100.jpg"
         },
-        {
+        "6": {
             "id": 6,
             "vin": "KZ47482522IQ528AF729",
             "status": 2,
             "regNum": "LKUAGPR1SUG",
             "client": 1,
-            "make" : "SCANIA",
+            "make": "SCANIA",
             "avatar": "https://www.webasto.com/uploads/media/commercial-vehicles-summer-200x100_34.jpg"
         },
-        {
+        "7": {
             "id": 7,
             "vin": "ME87030349003702200619",
             "status": 3,
             "regNum": "KJZOISZ1662",
             "client": 6,
-            "make" : "AMG",
+            "make": "AMG",
             "avatar": "https://i.pinimg.com/originals/fc/d3/a6/fcd3a652891b0286676f74c5ed385966.jpg"
         },
-        {
+        "8": {
             "id": 8,
             "vin": "FR1500300800317427F97801332",
             "status": 1,
             "regNum": "LZXAMCC1394",
             "client": 2,
-            "make" : "JOSSE",
+            "make": "JOSSE",
             "avatar": "https://i.pinimg.com/236x/32/17/a9/3217a9e1fd223d26b74e6c01f9f7aae8--indigo-sport.jpg"
         },
-        {
+        "9": {
             "id": 9,
             "vin": "AE680203363500606930215",
             "status": 1,
             "regNum": "KRAEKMF1JIO",
             "client": 6,
-            "make" : "Cadillac",
+            "make": "Cadillac",
             "avatar": "https://cloudflareimages.dealereprocess.com/resrc/images/c_limit,fl_lossy,w_200/v1/dvp/60/1572612138/Used-2013-Cadillac-ATS-Premium-ID1572612138-aHR0cHM6Ly9jb250ZW50LmhvbWVuZXRpb2wuY29tL3N0b2NrX2ltYWdlcy8yLzE1MDE3LmpwZw=="
         },
-        {
+        "10": {
             "id": 10,
             "vin": "TL790066701145050525032",
             "status": 4,
             "regNum": "KDZOIRI1",
             "client": 2,
-            "make" : "Dodge",
+            "make": "Dodge",
             "avatar": "http://tuningcult.com/wp-content/uploads/2014/01/Dodge-Challenger-Vapor-US-Air-Force-2-200x100.jpg"
         },
-        {
+        "11": {
             "id": 11,
             "vin": "DE54019033939757008632",
             "status": 1,
             "regNum": "VZXUCMZ1",
             "client": 4,
-            "make" : "Alfa Romeo",
+            "make": "Alfa Romeo",
             "avatar": "https://vignette.wikia.nocookie.net/gran-turismo/images/d/d3/Alfa_Romeo_TZ3_Stradale_%2711.jpg/revision/latest/window-crop/width/200/x-offset/0/y-offset/52/window-width/900/window-height/450?cb=20150902032105"
         },
-        {
+        "12": {
             "id": 12,
             "vin": "RS04531009831900518076",
             "status": 1,
             "regNum": "KXXODMZ1",
             "client": 5,
-            "make" : "CARESTO",
+            "make": "CARESTO",
             "avatar": "http://tuningcult.com/wp-content/uploads/2014/01/Vorsteiner-Lamborghini-Gallardo-Renazzo-4-200x100.jpg"
         },
-        {
+        "13": {
             "id": 13,
             "vin": "BG60RHVW21569591QM75SK",
             "status": 3,
             "regNum": "TQWIBHW1",
             "client": 6,
-            "make" : "SAAB",
+            "make": "SAAB",
             "avatar": "https://www.caroclic.com/files/thumbs/catalog/models/medium/saab-9-3-de-04-1998-a-08-2002.jpg"
         },
-        {
+        "14": {
             "id": 14,
             "vin": "PT94105748068005978003731",
             "status": 1,
             "regNum": "QWKANFU1",
             "client": 4,
-            "make" : "SCANIA",
+            "make": "SCANIA",
             "avatar": "https://www.corgi.co.uk/media/catalog/product/cache/4/thumbnail/200x100/9df78eab33525d08d6e5fb8d27136e95/c/c/cc13780_hps_1.jpg"
         },
-        {
+        "15": {
             "id": 15,
             "vin": "PL82734057038004009006200770",
             "status": 2,
             "regNum": "KTRONTO1",
             "client": 5,
-            "make" : "VOLVO",
-            "avatar": ""
+            "make": "VOLVO",
+            "avatar": "https://www.roosmalen.nl/vanroosmalen/images/nieuws/volvo-persbericht-verkooprecord.jpg"
         }
-    ],
-    "clients": [
-        {
+    },
+    "clients": {
+        "1": {
             "id": 1,
             "name": "Alicia Vikander",
             "address": "Långa Gatan, Djurgården",
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRfD7N18tcYI6zm-SnQqaqEHD8joHFC5RAPTUBYQx33j448Zz3sVy7qbqhsf8WF-mrXzs"
         },
-        {
+        "2": {
             "id": 2,
             "name": "Malin Åkerman",
             "address": "Strandvägen, Östermalm",
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSmqPzq3kP2mNiRFv11FGRvwss-TOwr2pVVZ8R9E9qyDsQd84biLPoZCpJDRq4NTFc8SQ"
         },
-        {
+        "3": {
             "id": 3,
             "name": "Alexander Skarsgård",
             "address": "Svartensgatan, Södermalm",
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq56Fz8kV2JXyJvxSN0Fm5hN0_KPvP6VoVn-4aCdnYpdbUnDi2V_uvvsSIdx4AtUYKTTQ"
         },
-        {
+        "4": {
             "id": 4,
             "name": "Dolph Lundgren",
             "address": "Sickla Kanalgata, Hammarby Sjöstad",
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdaWwP8AtO9oE6550BYbjOVZ0Mw2h0qIBITKS570ysTZit5_g2ICt4VSr1qrIfN9L62eM"
         },
-        {
+        "5": {
             "id": 5,
             "name": "Rebecca Ferguson",
             "address": "Norrbro, Gamla Stan",
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8WcHhS_t6B9a0VJBbEwjvbdr_dYzDYUJBf-TiX4HCxQJmsYSayjTKo9HwkKt7hF1jvfU"
         },
-        {
+        "6": {
             "id": 6,
             "name": "Helena Bergström",
             "address": "Nytorget, Södermalm",
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcZzXOSsolpxPU7xUPkkavZhK3jIotEkThY-K0YuPnBLcyfUzkFX6r39aVOIFYblWT1k8"
         }
-    ],
-    "status": [
-        {
+    },
+    "status": {
+        "1": {
             "id": 1,
             "status": "Connected",
             "color": "green"
         },
-        {
+        "2": {
             "id": 2,
             "status": "Disconnected",
             "color": "red"
         },
-        {
+        "3": {
             "id": 3,
             "status": "Oil check",
             "color": "grey"
         },
-        {
+        "4": {
             "id": 4,
             "status": "Engine issue",
             "color": "yellow"
         }
-    ]
+    }
 }

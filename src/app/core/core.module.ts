@@ -3,21 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
 import { LayoutModule } from './layout/layout.module';
-import { FirebaseBackendSimulatorComponent } from './firebase/firebase-backend-simulator/firebase-backend-simulator.component';
-import { FirebaseService } from './firebase/firebase.service';
+import { FirebaseModule } from './firebase/firebase.module';
 
 @NgModule({
-  declarations: [FirebaseBackendSimulatorComponent],
+  declarations: [],
   imports: [
     CommonModule,
     LayoutModule,
-    CoreRoutingModule
+    CoreRoutingModule,
+    FirebaseModule
   ],
   exports:[
     LayoutModule,
     CoreRoutingModule,
-    FirebaseBackendSimulatorComponent
-  ],
-  providers: [FirebaseService]
+    FirebaseModule
+  ]
 })
 export class CoreModule { }

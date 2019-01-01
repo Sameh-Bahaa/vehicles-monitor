@@ -3,8 +3,6 @@ import { VehiclesStateService } from 'src/app/store/vehicles/all-vehicles/state-
 import { Observable, of } from 'rxjs';
 import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
 import { FirebaseService } from 'src/app/core/firebase/firebase.service';
-import { statusDTO } from 'src/app/shared/DTOs/status';
-import { clientDTO } from 'src/app/shared/DTOs/client';
 
 @Component({
   selector: 'veh-vehicles-list-page',
@@ -12,9 +10,6 @@ import { clientDTO } from 'src/app/shared/DTOs/client';
   styleUrls: ['./vehicles-list-page.component.scss']
 })
 export class VehiclesListPageComponent implements OnInit, OnDestroy {
-  ngOnDestroy(): void {
-    
-  }
   vehicles$: Observable<vehicleDto[]>;
   clients$: Observable<any>;
   status$: Observable<any>;
@@ -34,7 +29,15 @@ export class VehiclesListPageComponent implements OnInit, OnDestroy {
   }
 
   onLoadVehicles() {
-    this.service.dispatchAdd(null);
+    this.toggleEnable = !this.toggleEnable;
+    console.log(` toggle ${this.toggleEnable}`);
+    this.isStartListening$ = of(this.toggleEnable);
+    this.isUpdateRandomVehicles$ = of(this.toggleEnable);
+  }
 
+  ngOnDestroy(): void {
+    this.isStartListening$ = of(false);
+    this.isUpdateRandomVehicles$ = of(false);
+    
   }
 }
