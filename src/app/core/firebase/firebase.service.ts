@@ -5,7 +5,7 @@ import 'firebase/database';
 import { clientDTO } from 'src/app/shared/DTOs/client';
 import { statusDTO } from 'src/app/shared/DTOs/status';
 import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
-import { of } from 'rxjs';
+import { of, from, Observable } from 'rxjs';
 import { VehiclesStateService } from 'src/app/store/vehicles/all-vehicles/state-service';
 
 
@@ -28,36 +28,19 @@ export class FirebaseService {
     this.db = firebase.database();
   }
 
-  getAllClients(): Promise<clientDTO[]> {
-    return this.db.ref('clients').once('value').then(
-      (snapshot) => {
-        return snapshot.val();
-      }
-    )
+  getAllClients(): Observable<firebase.database.DataSnapshot> {
+    return from(this.db.ref('clients').once('value'));
   }
 
-  getAllStatus(): Promise<statusDTO[]> {
-    return this.db.ref('status').once('value').then(
-      (snapshot) => {
-        return snapshot.val();
-      }
-    )
+  getAllStatus(): Observable<firebase.database.DataSnapshot> {
+    return from(this.db.ref('status').once('value'));
   }
 
-  getAllVehicles(): Promise<vehicleDto[]> {
-    return this.db.ref('vehicles').once('value').then(
-      (snapshot) => {
-        let vehicles: vehicleDto[] = snapshot.val();
-        vehicles = (vehicles[0]) ? vehicles :vehicles.slice(1);
-        
-        this.stateService.dispatcLoadInitial(vehicles);
-        return snapshot.val()
-      }
-    )
+  getAllVehicles(): Observable<firebase.database.DataSnapshot> {
+    return from(this.db.ref('vehicles').once('value'));
   }
 
   updateVehicleStatus(vehicleID: number, status: number) {
-    console.log('veh:', vehicleID, ' statusid:', status)
     this.db.ref('vehicles/' + vehicleID).update({ status: status }, function (error) {
       if (error) {
         console.error(error)
@@ -70,7 +53,6 @@ export class FirebaseService {
   turnOnNotification() {
     this.db.ref('vehicles').on('child_changed', snapshot => {
       let updates: vehicleDto = snapshot.val();
-      console.log('updates recieved:', updates);
       this.stateService.dispatchUpdateSuccess(updates);
     });
   }

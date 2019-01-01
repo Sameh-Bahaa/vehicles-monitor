@@ -2,6 +2,7 @@ import { VehiclesState } from './state';
 import { VehiclesActions } from './actions';
 import { PayloadAction } from '../../PayloadAction';
 import * as _ from 'lodash';
+import { filter, filterNumbers } from 'src/app/core/services/util';
 
 
 export function vehiclesReducers(state: VehiclesState, action: PayloadAction<any>): VehiclesState {
@@ -35,8 +36,18 @@ export function vehiclesReducers(state: VehiclesState, action: PayloadAction<any
                 isSuccess: false
             };
         case itemActions.FILTER:
+        let filteredEntities = filter(state.allItems, 'vin', action.payload || state.filter.vin);
+            filteredEntities = filterNumbers(filteredEntities, 'client', action.payload || state.filter.client);
+            filteredEntities = filterNumbers(filteredEntities, 'status', action.payload || [state.filter.status]);
             return {
                 ...state,
+                items: [
+                    ...filteredEntities
+                ],
+                filter: {
+                    ...state.filter,
+                    ...action.payload
+                },
                 modelState: null,
                 isSuccess: false
             };
@@ -61,13 +72,26 @@ export function vehiclesReducers(state: VehiclesState, action: PayloadAction<any
             };
         case itemActions.UPDATE_SUCCESS:
             let v = _.find(state.items, i => i.id == action.payload.id);
-            console.log(v);
             v.status = action.payload.status;
             return {
                 ...state,
                 items: [
                     ...state.items
                 ],
+                modelState: null,
+                isSuccess: true
+            };
+        case itemActions.LOAD_ALL:
+            return {
+                ...state,
+                allItems: action.payload.list,
+                modelState: null,
+                isSuccess: false
+            };
+        case itemActions.ADD_ALL_ITEMS:
+            return {
+                ...state,
+                allItems: action.payload,
                 modelState: null,
                 isSuccess: true
             };

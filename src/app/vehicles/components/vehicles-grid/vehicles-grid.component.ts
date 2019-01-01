@@ -9,7 +9,7 @@ import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
   styleUrls: ['./vehicles-grid.component.scss']
 })
 export class VehiclesGridComponent implements OnInit {
-  displayedColumns = ['vin', 'client', 'regNum', 'status', 'make'];
+  displayedColumns = ['vin', 'client', 'regNum', 'make', 'status'];
   dataSource: MatTableDataSource<vehicleDto>;
   @Output() loadVehicles = new EventEmitter<void>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -30,24 +30,6 @@ export class VehiclesGridComponent implements OnInit {
   ngOnInit() {
   }
 
-  applyFilter(filterValue: string, column: string) {
-
-    // if (column == 'status') {
-    //   this.dataSource.filterPredicate =
-    //     (data: vehicleDto, filter: string) => { return data[column] };
-    // } else {
-    //   this.dataSource.filterPredicate =
-    //     (data: vehicleDto, filter: string) => { return data[column].indexOf(filter) != -1 };
-    // }
-
-
-    filterValue = filterValue.trim(); // Remove whitespace
-    //filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
 
   onloadVehiclesClick() {
     this.loadVehicles.emit();

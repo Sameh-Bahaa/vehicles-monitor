@@ -3,6 +3,8 @@ import { FirebaseService } from '../firebase.service';
 import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
 import { statusDTO } from 'src/app/shared/DTOs/status';
 import { clientDTO } from 'src/app/shared/DTOs/client';
+import { Observable } from 'rxjs';
+import { VehiclesStateService } from 'src/app/store/vehicles/all-vehicles/state-service';
 
 @Component({
   selector: 'veh-firebase-backend-simulator',
@@ -13,11 +15,9 @@ export class FirebaseBackendSimulatorComponent implements OnInit {
   @Input() set isUpdateRandomVehicles(val: boolean) {
     if(val) {
       this.timer = setInterval(() => {
-        console.log('timer started');
         this.updateRandomVehicleStatus()
       }, 500);
     } else {
-      console.log('timer cleared');
       clearInterval(this.timer);
     }
   }
@@ -34,7 +34,7 @@ export class FirebaseBackendSimulatorComponent implements OnInit {
   private allStatus: statusDTO[];
   private allClients: clientDTO[];
 
-  constructor(private fbService: FirebaseService) { 
+  constructor(private fbService: FirebaseService, private stateService: VehiclesStateService) { 
   }
 
   ngOnInit() {
@@ -42,17 +42,15 @@ export class FirebaseBackendSimulatorComponent implements OnInit {
   }
 
   getLookups() {
-    this.fbService.getAllVehicles().then(v => {
-      this.allVehicles = v;
+    this.fbService.getAllVehicles().subscribe(v => {
+      this.allVehicles = (v.val()[0]) ? v.val(): v.val().slice(1);
+      this.stateService.dispatcLoadInitial(this.allVehicles);
     });
 
-    this.fbService.getAllStatus().then(s => {
-      this.allStatus = s;
+    this.fbService.getAllStatus().subscribe(s => {
+      this.allStatus = s.val();
     });
 
-    this.fbService.getAllClients().then(c => {
-      this.allClients = c;
-    });
   }
 
   updateRandomVehicleStatus() {
@@ -63,7 +61,6 @@ export class FirebaseBackendSimulatorComponent implements OnInit {
     let statusID = (this.allStatus[randNumForStatus]) ? this.allStatus[randNumForStatus].id : 1;
 
     this.fbService.updateVehicleStatus(vehicleID, statusID);
-    console.log(vehicleID,statusID)
   }
 
   startListening(){
@@ -71,7 +68,6 @@ export class FirebaseBackendSimulatorComponent implements OnInit {
   }
 
   stopListening() {
-    console.log('Listening Stopped!')
     this.fbService.turnOffNotification();
   }
 
