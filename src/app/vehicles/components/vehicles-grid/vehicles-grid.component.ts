@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
 
@@ -8,7 +8,7 @@ import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
   templateUrl: './vehicles-grid.component.html',
   styleUrls: ['./vehicles-grid.component.scss']
 })
-export class VehiclesGridComponent implements OnInit {
+export class VehiclesGridComponent {
   displayedColumns = ['vin', 'client', 'regNum', 'make', 'status'];
   dataSource: MatTableDataSource<vehicleDto>;
   @Output() isRealTime = new EventEmitter<boolean>();
@@ -24,18 +24,14 @@ export class VehiclesGridComponent implements OnInit {
   }
 
 
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
-
-  onloadVehiclesClick() {
-    
+  constructor(private snackBar: MatSnackBar) {
   }
 
   onChangeRealTime(isChecked: boolean) {
     this.isRealTime.emit(isChecked);
+    this.snackBar.open('real-time updates', (isChecked) ? 'On' : 'Off', {
+      duration: 2000,
+      panelClass: [(isChecked) ? 'green-snackbar' : 'red-snackbar']
+    });
   }
 }

@@ -8,6 +8,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { VehiclesFilterComponent } from './components/vehicles-filter/vehicles-filter.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CoreModule } from '../core/core.module';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   declarations: [VehiclesListPageComponent, VehiclesGridComponent, VehiclesFilterComponent],
@@ -17,7 +18,9 @@ import { CoreModule } from '../core/core.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    CoreModule
-  ]
+    CoreModule,
+    MatSnackBarModule
+  ],
+  providers: [MatSnackBar]
 })
 export class VehiclesModule { }
