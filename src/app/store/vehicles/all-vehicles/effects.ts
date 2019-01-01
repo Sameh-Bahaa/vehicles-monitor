@@ -7,7 +7,6 @@ import { of } from "rxjs";
 import { PayloadAction } from "../../PayloadAction";
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { map, mergeMap, withLatestFrom, switchMap } from 'rxjs/operators';
-import { FirebaseService } from 'src/app/core/firebase/firebase.service';
 import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
 
 const emptyAction = { type: '[Vehicle] empty', payload: { list: null, count: null } };
@@ -19,7 +18,6 @@ export class VehiclesEffectsService {
         private actions$: Actions,
         private store: Store<State>,
         private itemActions: VehiclesActions,
-        private fbService: FirebaseService
     ) {
     }
     // @Effect()
@@ -57,7 +55,6 @@ export class VehiclesEffectsService {
     //                         //             return (v[key] as string).toLowerCase().includes(filters[key].toLowerCase())
     //                         //         });
     //                         // });
-    //                         // console.log(ff)
 
 
     //                         // if(!filters && filters != null)
@@ -75,7 +72,6 @@ export class VehiclesEffectsService {
     //                               )
     //                               .reduce((x, y) => x && y, true),
     //                           );
-    //                         console.log(filtered)
     //                         return this.itemActions.createAddManyItemsAction(filtered);
     //                     })
     //                     , catchError(err => of(this.itemActions.createOperationFailedAction(err)))

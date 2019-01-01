@@ -41,7 +41,6 @@ export class FirebaseService {
   }
 
   updateVehicleStatus(vehicleID: number, status: number) {
-    console.log('veh:', vehicleID, ' statusid:', status)
     this.db.ref('vehicles/' + vehicleID).update({ status: status }, function (error) {
       if (error) {
         console.error(error)
@@ -54,7 +53,6 @@ export class FirebaseService {
   turnOnNotification() {
     this.db.ref('vehicles').on('child_changed', snapshot => {
       let updates: vehicleDto = snapshot.val();
-      console.log('updates recieved:', updates);
       this.stateService.dispatchUpdateSuccess(updates);
     });
   }

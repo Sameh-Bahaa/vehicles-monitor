@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./vehicles-grid.component.scss']
 })
 export class VehiclesGridComponent implements OnInit {
-  displayedColumns = ['vin', 'name', 'address', 'regNum', 'status'];
+  displayedColumns = ['vin', 'client', 'make', 'regNum', 'status'];
   dataSource: MatTableDataSource<VehicleDto>;
   @Output() loadVehicles = new EventEmitter<void>();
   @ViewChild(MatPaginator) paginator: MatPaginator;

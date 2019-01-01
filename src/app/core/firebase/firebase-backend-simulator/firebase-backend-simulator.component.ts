@@ -8,18 +8,15 @@ import { VehiclesStateService } from 'src/app/store/vehicles/all-vehicles/state-
 
 @Component({
   selector: 'veh-firebase-backend-simulator',
-  templateUrl: './firebase-backend-simulator.component.html',
-  styleUrls: ['./firebase-backend-simulator.component.scss']
+  template: ''
 })
 export class FirebaseBackendSimulatorComponent implements OnInit {
   @Input() set isUpdateRandomVehicles(val: boolean) {
     if(val) {
       this.timer = setInterval(() => {
-        console.log('timer started');
         this.updateRandomVehicleStatus()
       }, 500);
     } else {
-      console.log('timer cleared');
       clearInterval(this.timer);
     }
   }
@@ -63,7 +60,6 @@ export class FirebaseBackendSimulatorComponent implements OnInit {
     let statusID = (this.allStatus[randNumForStatus]) ? this.allStatus[randNumForStatus].id : 1;
 
     this.fbService.updateVehicleStatus(vehicleID, statusID);
-    console.log(vehicleID,statusID)
   }
 
   startListening(){
@@ -71,7 +67,6 @@ export class FirebaseBackendSimulatorComponent implements OnInit {
   }
 
   stopListening() {
-    console.log('Listening Stopped!')
     this.fbService.turnOffNotification();
   }
 
