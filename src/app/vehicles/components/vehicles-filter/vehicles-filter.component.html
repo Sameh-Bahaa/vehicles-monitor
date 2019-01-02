@@ -23,10 +23,10 @@
                 </mat-form-field>
 
                 <mat-form-field class="example-margin"> 
-                  <input matInput placeholder="Name" aria-label="Name" [matAutocomplete]="autoName" formControlName="name" />
+                  <input matInput placeholder="Client" aria-label="Name" [matAutocomplete]="autoName" formControlName="name" />
                   <mat-autocomplete #autoName="matAutocomplete">
-                    <mat-option *ngFor="let client of filteredClients | async" [value]="client.id" (onSelectionChange)="onClientSelection(client.id)">
-                      <img style="vertical-align:middle;" aria-hidden src="{{client.avatar}}" height="25" />
+                    <mat-option *ngFor="let client of filteredClients | async" [value]="client.name" (onSelectionChange)="onClientSelection(client.id)">
+                      <img style="vertical-align:middle;" aria-hidden src="{{client.avatar}}" height="30" class="mr-6" />
                       <span>{{ client.name }}</span>
                     </mat-option>
                   </mat-autocomplete>
