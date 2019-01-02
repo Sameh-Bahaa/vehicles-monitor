@@ -71,7 +71,7 @@ export function vehiclesReducers(state: VehiclesState, action: PayloadAction<any
                 isSuccess: false
             };
         case itemActions.UPDATE_SUCCESS:
-            let v = _.find(state.items, i => i.id == action.payload.id);
+            let v = _.find(state.allItems, i => i.id == action.payload.id);
             v.status = action.payload.status;
             return {
                 ...state,
