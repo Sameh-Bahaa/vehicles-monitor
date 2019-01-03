@@ -12,8 +12,9 @@ import { statusDTO } from 'src/app/shared/DTOs/status';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VehiclesGridComponent implements OnChanges {
-  displayedColumns = ['vin', 'client', 'regNum', 'make', 'status'];
-  dataSource: MatTableDataSource<vehicleDto>;
+  private displayedColumns = ['vin', 'client', 'regNum', 'make', 'status'];
+  private dataSource: MatTableDataSource<vehicleDto>;
+  private realTimeClass: string;
   @Output() isRealTime = new EventEmitter<boolean>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -55,6 +56,7 @@ export class VehiclesGridComponent implements OnChanges {
 
   onChangeRealTime(isChecked: boolean) {
     this.isRealTime.emit(isChecked);
+    this.realTimeClass = (isChecked) ? 'real-time-green' : 'real-time-red';
     this.snackBar.open('real-time updates', (isChecked) ? 'On' : 'Off', {
       duration: 2000,
       panelClass: [(isChecked) ? 'green-snackbar' : 'red-snackbar']

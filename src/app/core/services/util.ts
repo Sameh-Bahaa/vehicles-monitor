@@ -50,6 +50,12 @@ export function filterNumbers<T>(state: Array<T>, prop: string, valuesToCompare:
   return state;
 }
 
+export function filterNumbersArray<T>(state: Array<T>, prop: string, valuesToCompare: Array<number>) {
+  if (valuesToCompare.hasOwnProperty(prop) && valuesToCompare[prop] && valuesToCompare[prop].length > 0 )
+    return [...state.filter(item => { return valuesToCompare[prop].includes(item[prop]) })];
+  return state;
+}
+
 export function dynamicSort(property: string) {
   let sortOrder = 1;
   if (property[0] === "-") {

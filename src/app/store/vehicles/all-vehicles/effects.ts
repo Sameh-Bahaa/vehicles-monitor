@@ -27,7 +27,7 @@ export class VehiclesEffectsService {
         return this.actions$.pipe(
             ofType(this.itemActions.FAILED),
             mergeMap(action => {
-                console.log((action as PayloadAction<any>).payload);
+                console.error((action as PayloadAction<any>).payload);
                 return of(emptyAction)
             })
         );

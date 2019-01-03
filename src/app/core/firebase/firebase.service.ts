@@ -44,9 +44,7 @@ export class FirebaseService {
     this.db.ref('vehicles/' + vehicleID).update({ status: status }, function (error) {
       if (error) {
         console.error(error)
-      } else {
-        console.info('success')
-      }
+      } 
     });
   }
 

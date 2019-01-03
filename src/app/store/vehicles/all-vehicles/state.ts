@@ -13,12 +13,16 @@ export interface VehiclesState {
 export const VehiclesInitialState: VehiclesState = {
     allItems: [],
     items: [],
-    filter: null,
+    filter: {
+        vin : null,
+        client: [],
+        status: null
+    },
     isSuccess: false
 };
 
 export interface filterVehicleDto{
     vin : string;
-    client: number;
+    client: number[];
     status: number
 };

@@ -3,7 +3,7 @@
     <mat-card-title>Our Vehicles</mat-card-title>
     <mat-card-subtitle>
       <mat-slide-toggle [color]="Primary" (change)="onChangeRealTime($event.checked)" class="md-right">
-        <code class="">Real-time updates!</code>
+        <code [class]="realTimeClass">Real-time updates!</code>
       </mat-slide-toggle>
     </mat-card-subtitle>
     <!-- Row -->

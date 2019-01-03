@@ -2,7 +2,7 @@ import { VehiclesState } from './state';
 import { VehiclesActions } from './actions';
 import { PayloadAction } from '../../PayloadAction';
 import * as _ from 'lodash';
-import { filter, filterNumbers } from 'src/app/core/services/util';
+import { filter, filterNumbers, filterNumbersArray } from 'src/app/core/services/util';
 
 
 export function vehiclesReducers(state: VehiclesState, action: PayloadAction<any>): VehiclesState {
@@ -37,7 +37,7 @@ export function vehiclesReducers(state: VehiclesState, action: PayloadAction<any
             };
         case itemActions.FILTER:
         let filteredEntities = filter(state.allItems, 'vin', action.payload || state.filter.vin);
-            filteredEntities = filterNumbers(filteredEntities, 'client', action.payload || state.filter.client);
+            filteredEntities = filterNumbersArray(filteredEntities, 'client', action.payload || state.filter.client);
             filteredEntities = filterNumbers(filteredEntities, 'status', action.payload || [state.filter.status]);
             return {
                 ...state,

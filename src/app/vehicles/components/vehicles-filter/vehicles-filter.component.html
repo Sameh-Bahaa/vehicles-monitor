@@ -19,25 +19,42 @@
               </mat-expansion-panel-header>
               <section class="example-section">
                 <mat-form-field class="example-margin">
-                  <input matInput placeholder="VIN" aria-label="VIN" formControlName="VIN" (keyup)="onVINChange($event)"/>
+                  <input matInput placeholder="VIN" aria-label="VIN" formControlName="VIN" (keyup)="onVINChange($event)" />
+                  <mat-hint>Vehicle Identifiction Number</mat-hint>
                 </mat-form-field>
 
-                <mat-form-field class="example-margin"> 
-                  <input matInput placeholder="Client" aria-label="Name" [matAutocomplete]="autoName" formControlName="name" />
-                  <mat-autocomplete #autoName="matAutocomplete">
-                    <mat-option *ngFor="let client of filteredClients | async" [value]="client.name" (onSelectionChange)="onClientSelection(client.id)">
-                      <img style="vertical-align:middle;" aria-hidden src="{{client.avatar}}" height="30" class="mr-6" />
-                      <span>{{ client.name }}</span>
-                    </mat-option>
-                  </mat-autocomplete>
-                </mat-form-field>
+               
+
                 <mat-form-field class="example-margin">
-                  <mat-select placeholder="Status" formControlName="status" (selectionChange)="onStatusSelection($event.value)">
+                  <mat-select placeholder="Select Status" formControlName="status" (selectionChange)="onStatusSelection($event.value)">
+                      <mat-option>
+                          
+                        </mat-option>
                     <mat-option *ngFor="let s of statusList" [value]="s.id">
                       {{s.status}}
                     </mat-option>
                   </mat-select>
+                  <mat-hint>Vehicle Status</mat-hint>
                 </mat-form-field>
+
+                <mat-form-field class="example-margin">
+                    <mat-chip-list #chipClientList>
+                      <mat-chip *ngFor="let client of selectedClients" selectable="true" removable="true"
+                        (removed)="remove(client)" color="primary" aria-orientation="horizontal" selected>
+                        {{client}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                      </mat-chip>
+                      <input #txtName matInput placeholder="Client" aria-label="Name" [matAutocomplete]="autoName" formControlName="name"
+                      [matChipInputFor]="chipClientList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" matChipInputAddOnBlur="true" (matChipInputTokenEnd)="add($event)" />
+                      <mat-autocomplete #autoName="matAutocomplete"  (optionSelected)="onClientSelection($event)">
+                        <mat-option *ngFor="let client of filteredClients | async" [value]="client.id">
+                          <img style="vertical-align:middle;" aria-hidden src="{{client.avatar}}" height="40" class="mr-6" />
+                          <span>{{ client.name }}</span>
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-chip-list>
+                    <mat-hint>Vehicle Owner</mat-hint>
+                  </mat-form-field>
               </section>
             </mat-expansion-panel>
           </mat-accordion>
