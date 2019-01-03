@@ -148,6 +148,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_store_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./store/store.module */ "./src/app/store/store.module.ts");
 /* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! hammerjs */ "./node_modules/hammerjs/hammer.js");
 /* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(hammerjs__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm5/ngx-translate-core.js");
+
 
 
 
@@ -160,7 +162,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppModule = /** @class */ (function () {
-    function AppModule() {
+    function AppModule(translate) {
+        // this language will be used as a fallback when a translation isn't found in the current language
+        translate.setDefaultLang('sv');
+        // the lang to use, if the lang isn't available, it will use the current loader to get them
+        translate.use('sv');
     }
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
@@ -183,7 +189,8 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
-        })
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__["TranslateService"]])
     ], AppModule);
     return AppModule;
 }());
@@ -490,9 +497,6 @@ var FirebaseService = /** @class */ (function () {
             if (error) {
                 console.error(error);
             }
-            else {
-                console.info('success');
-            }
         });
     };
     FirebaseService.prototype.turnOnNotification = function () {
@@ -523,7 +527,7 @@ var FirebaseService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ============================================================== -->\r\n<!-- sidebar -->\r\n<!-- ============================================================== -->\r\n<div class=\"user-profile\" style=\"background: url(assets/images/background/bg.jpg) no-repeat;background-size: cover;background-repeat: no-repeat;background-position: center center;\">\r\n  <!-- User profile image -->\r\n  <div class=\"profile-img\"> <img src=\"assets/images/users/profile.png\" alt=\"user\"> </div>\r\n  <!-- User profile text-->\r\n  <!-- ============================================================== -->\r\n  <!-- Profile - style you can find in header.scss -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"profile-text\"><a class=\"\"> Sameh Felimon <i class=\"ti-angle-down font-12 m-l-5\"></i></a></div>\r\n \r\n  \r\n</div>\r\n<mat-nav-list appAccordion>\r\n  <mat-list-item appAccordionLink *ngFor=\"let menuitem of menuItems.getMenuitem()\" routerLinkActive=\"selected\">\r\n      <a class=\"\" appAccordionToggle [routerLink]=\"['/', menuitem.state]\" *ngIf=\"menuitem.type === 'link'\">\r\n          <mat-icon>{{ menuitem.icon }}</mat-icon> \r\n          <span>{{ menuitem.name }}</span> \r\n          <span fxFlex></span> \r\n          <span class=\"label label-{{ badge.type }}\" *ngFor=\"let badge of menuitem.badge\">{{ badge.value }}</span> \r\n      </a>\r\n\r\n      \r\n  </mat-list-item>\r\n\r\n</mat-nav-list>"
+module.exports = "<!-- ============================================================== -->\r\n<!-- sidebar -->\r\n<!-- ============================================================== -->\r\n<div class=\"user-profile\" style=\"background: url(assets/images/background/bg.jpg) no-repeat;background-size: cover;background-repeat: no-repeat;background-position: center center;\">\r\n  <!-- User profile image -->\r\n  <div class=\"profile-img\"> <img src=\"assets/images/users/profile.png\" alt=\"user\"> </div>\r\n  <!-- User profile text-->\r\n  <!-- ============================================================== -->\r\n  <!-- Profile - style you can find in header.scss -->\r\n  <!-- ============================================================== -->\r\n  <div class=\"profile-text\"><a class=\"\"> Sameh Felimon <i class=\"ti-angle-down font-12 m-l-5\"></i></a></div>\r\n \r\n  \r\n</div>\r\n<mat-nav-list appAccordion>\r\n  <mat-list-item appAccordionLink  routerLinkActive=\"selected\">\r\n      <a class=\"\" appAccordionToggle [routerLink]=\"['/dashboard']\">\r\n          <mat-icon>dashboard</mat-icon> \r\n          <span>{{ 'layout.menu.dashboard' | translate }}</span> \r\n          <span fxFlex></span> \r\n      </a>\r\n  </mat-list-item>\r\n\r\n  <mat-list-item appAccordionLink  routerLinkActive=\"selected\">\r\n      <a class=\"\" appAccordionToggle [routerLink]=\"['/vehicles']\">\r\n          <mat-icon>local_car_wash</mat-icon> \r\n          <span>{{ 'layout.menu.vehicles-list' | translate }}</span> \r\n          <span fxFlex></span> \r\n      </a>\r\n  </mat-list-item>\r\n\r\n</mat-nav-list>"
 
 /***/ }),
 
@@ -652,7 +656,7 @@ var SpinnerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"language\">\r\n    <mat-icon>language</mat-icon>\r\n</button>\r\n<mat-menu #language=\"matMenu\">\r\n    <button mat-menu-item (click)=\"changeLang('en')\">\r\n        <span>{{ 'English' }}</span>\r\n    </button>\r\n    <button mat-menu-item (click)=\"changeLang('sv')\">\r\n        <span>{{ 'Swedish' }}</span>\r\n    </button>\r\n</mat-menu>\r\n<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"profile\">\r\n    <mat-icon>account_circle</mat-icon>\r\n</button>\r\n<mat-menu #profile=\"matMenu\" class=\"mymegamenu\">\r\n    \r\n    <button mat-menu-item>\r\n        <mat-icon>settings</mat-icon> Settings\r\n    </button>\r\n    <button mat-menu-item>\r\n        <mat-icon>exit_to_app</mat-icon> Sign Out\r\n    </button>\r\n</mat-menu>"
+module.exports = "<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"language\">\r\n    <mat-icon>language</mat-icon>\r\n</button>\r\n<mat-menu #language=\"matMenu\">\r\n    <button mat-menu-item (click)=\"changeLang('en')\">\r\n        <span>{{ 'layout.menu.language.en' | translate }}</span>\r\n    </button>\r\n    <button mat-menu-item (click)=\"changeLang('sv')\">\r\n        <span>{{ 'layout.menu.language.sv' | translate }}</span>\r\n    </button>\r\n</mat-menu>\r\n<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"profile\">\r\n    <mat-icon>account_circle</mat-icon>\r\n</button>\r\n<mat-menu #profile=\"matMenu\" class=\"mymegamenu\">\r\n    \r\n    <button mat-menu-item>\r\n        <mat-icon>settings</mat-icon>\r\n        {{ 'layout.menu.settings' | translate }}\r\n    </button>\r\n    <button mat-menu-item>\r\n        <mat-icon>exit_to_app</mat-icon> \r\n        {{ 'layout.menu.sign-out' | translate }}\r\n    </button>\r\n</mat-menu>"
 
 /***/ }),
 
@@ -679,12 +683,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TopnavComponent", function() { return TopnavComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm5/ngx-translate-core.js");
+
 
 
 var TopnavComponent = /** @class */ (function () {
-    function TopnavComponent() {
+    function TopnavComponent(translate) {
+        this.translate = translate;
     }
     TopnavComponent.prototype.ngOnInit = function () {
+    };
+    TopnavComponent.prototype.changeLang = function (lang) {
+        this.translate.use(lang);
     };
     TopnavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -692,7 +702,7 @@ var TopnavComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./topnav.component.html */ "./src/app/core/layout/components/topnav/topnav.component.html"),
             styles: [__webpack_require__(/*! ./topnav.component.scss */ "./src/app/core/layout/components/topnav/topnav.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__["TranslateService"]])
     ], TopnavComponent);
     return TopnavComponent;
 }());
@@ -758,7 +768,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/sidebar/sidebar.component */ "./src/app/core/layout/components/sidebar/sidebar.component.ts");
 /* harmony import */ var _components_topnav_topnav_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/topnav/topnav.component */ "./src/app/core/layout/components/topnav/topnav.component.ts");
 /* harmony import */ var _pages_layout_page_layout_page_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/layout-page/layout-page.component */ "./src/app/core/layout/pages/layout-page/layout-page.component.ts");
-/* harmony import */ var src_app_shared_material_material_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/shared/material/material.module */ "./src/app/shared/material/material.module.ts");
+/* harmony import */ var src_app_shared_shared_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/shared/shared.module */ "./src/app/shared/shared.module.ts");
 /* harmony import */ var _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/spinner/spinner.component */ "./src/app/core/layout/components/spinner/spinner.component.ts");
 
 
@@ -783,7 +793,7 @@ var LayoutModule = /** @class */ (function () {
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _layout_routing_module__WEBPACK_IMPORTED_MODULE_3__["LayoutRoutingModule"],
-                src_app_shared_material_material_module__WEBPACK_IMPORTED_MODULE_7__["MaterialModule"]
+                src_app_shared_shared_module__WEBPACK_IMPORTED_MODULE_7__["SharedModule"]
             ]
         })
     ], LayoutModule);
@@ -866,7 +876,7 @@ var LayoutPageComponent = /** @class */ (function () {
 /*!***************************************!*\
   !*** ./src/app/core/services/util.ts ***!
   \***************************************/
-/*! exports provided: insertByIndex, removeByIndex, removeByItem, addItem, getEntitesPerPage, pluck, filterAll, filter, filterNumbers, dynamicSort */
+/*! exports provided: insertByIndex, removeByIndex, removeByItem, addItem, getEntitesPerPage, pluck, filterAll, filter, filterNumbers, filterNumbersArray, dynamicSort */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -880,6 +890,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterAll", function() { return filterAll; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterNumbers", function() { return filterNumbers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterNumbersArray", function() { return filterNumbersArray; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dynamicSort", function() { return dynamicSort; });
 //#region Array-Functions
 function insertByIndex(state, newItem, insertAt) {
@@ -924,6 +935,11 @@ function filter(state, prop, valuesToCompare) {
 function filterNumbers(state, prop, valuesToCompare) {
     if (valuesToCompare.hasOwnProperty(prop) && valuesToCompare[prop] && (typeof (valuesToCompare[prop] == "number")))
         return state.filter(function (item) { return item[prop] == valuesToCompare[prop]; }).slice();
+    return state;
+}
+function filterNumbersArray(state, prop, valuesToCompare) {
+    if (valuesToCompare.hasOwnProperty(prop) && valuesToCompare[prop] && valuesToCompare[prop].length > 0)
+        return state.filter(function (item) { return valuesToCompare[prop].includes(item[prop]); }).slice();
     return state;
 }
 function dynamicSort(property) {
@@ -980,7 +996,10 @@ var MaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSidenavModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatListModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatMenuModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSlideToggleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatChipsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSortModule"]
             ],
             exports: [
                 //NoopAnimationsModule,
@@ -998,7 +1017,10 @@ var MaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSidenavModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatListModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatMenuModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSlideToggleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatChipsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSortModule"]
             ]
         })
     ], MaterialModule);
@@ -1080,18 +1102,25 @@ var SharedRoutingModule = /** @class */ (function () {
 /*!*****************************************!*\
   !*** ./src/app/shared/shared.module.ts ***!
   \*****************************************/
-/*! exports provided: SharedModule */
+/*! exports provided: SharedModule, HttpLoaderFactory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SharedModule", function() { return SharedModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpLoaderFactory", function() { return HttpLoaderFactory; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _shared_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared-routing.module */ "./src/app/shared/shared-routing.module.ts");
 /* harmony import */ var _material_material_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./material/material.module */ "./src/app/shared/material/material.module.ts");
 /* harmony import */ var _menu_items_menu_items__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./menu-items/menu-items */ "./src/app/shared/menu-items/menu-items.ts");
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm5/ngx-translate-core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/http-loader */ "./node_modules/@ngx-translate/http-loader/fesm5/ngx-translate-http-loader.js");
+
+
+
 
 
 
@@ -1108,9 +1137,18 @@ var SharedModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _shared_routing_module__WEBPACK_IMPORTED_MODULE_3__["SharedRoutingModule"],
                 _material_material_module__WEBPACK_IMPORTED_MODULE_4__["MaterialModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"],
+                _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateModule"].forRoot({
+                    loader: {
+                        provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateLoader"],
+                        useFactory: HttpLoaderFactory,
+                        deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]]
+                    }
+                })
             ],
             exports: [
-                _material_material_module__WEBPACK_IMPORTED_MODULE_4__["MaterialModule"]
+                _material_material_module__WEBPACK_IMPORTED_MODULE_4__["MaterialModule"],
+                _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateModule"]
             ],
             providers: [_menu_items_menu_items__WEBPACK_IMPORTED_MODULE_5__["MenuItems"]]
         })
@@ -1118,6 +1156,9 @@ var SharedModule = /** @class */ (function () {
     return SharedModule;
 }());
 
+function HttpLoaderFactory(http) {
+    return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_8__["TranslateHttpLoader"](http, "/assets/i18n/", '.json');
+}
 
 
 /***/ }),
@@ -1513,7 +1554,7 @@ var VehiclesEffectsService = /** @class */ (function () {
     }
     VehiclesEffectsService.prototype.onFailed = function () {
         return this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(this.itemActions.FAILED), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["mergeMap"])(function (action) {
-            console.log(action.payload);
+            console.error(action.payload);
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(emptyAction);
         }));
     };
@@ -1568,7 +1609,7 @@ function vehiclesReducers(state, action) {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state, { items: action.payload.slice(), modelState: null, isSuccess: false });
         case itemActions.FILTER:
             var filteredEntities = Object(src_app_core_services_util__WEBPACK_IMPORTED_MODULE_3__["filter"])(state.allItems, 'vin', action.payload || state.filter.vin);
-            filteredEntities = Object(src_app_core_services_util__WEBPACK_IMPORTED_MODULE_3__["filterNumbers"])(filteredEntities, 'client', action.payload || state.filter.client);
+            filteredEntities = Object(src_app_core_services_util__WEBPACK_IMPORTED_MODULE_3__["filterNumbersArray"])(filteredEntities, 'client', action.payload || state.filter.client);
             filteredEntities = Object(src_app_core_services_util__WEBPACK_IMPORTED_MODULE_3__["filterNumbers"])(filteredEntities, 'status', action.payload || [state.filter.status]);
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state, { items: filteredEntities.slice(), filter: tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state.filter, action.payload), modelState: null, isSuccess: false });
         case itemActions.SELECT_ITEM:
@@ -1578,7 +1619,7 @@ function vehiclesReducers(state, action) {
         case itemActions.LOAD:
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state, { modelState: null, isSuccess: false });
         case itemActions.UPDATE_SUCCESS:
-            var v = lodash__WEBPACK_IMPORTED_MODULE_2__["find"](state.items, function (i) { return i.id == action.payload.id; });
+            var v = lodash__WEBPACK_IMPORTED_MODULE_2__["find"](state.allItems, function (i) { return i.id == action.payload.id; });
             v.status = action.payload.status;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, state, { items: state.items.slice(), modelState: null, isSuccess: true });
         case itemActions.LOAD_ALL:
@@ -1662,7 +1703,11 @@ __webpack_require__.r(__webpack_exports__);
 var VehiclesInitialState = {
     allItems: [],
     items: [],
-    filter: null,
+    filter: {
+        vin: null,
+        client: [],
+        status: null
+    },
     isSuccess: false
 };
 ;
@@ -1677,7 +1722,7 @@ var VehiclesInitialState = {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]='filterForm'>\r\n  <mat-card>\r\n    <mat-card-content>\r\n      <mat-card-title>Vehicles Filter</mat-card-title>\r\n\r\n\r\n      <!-- Row -->\r\n      <div fxLayout=\"row\" fxLayoutWrap=\"wrap\">\r\n        <!-- column -->\r\n        <div fxFlex.gt-sm=\"50\" fxFlex.gt-xs=\"50\">\r\n          Now you can filter our monitored vichels by their Status or by the Owner\r\n          <br /><br />\r\n\r\n          <mat-accordion>\r\n            <mat-expansion-panel>\r\n              <mat-expansion-panel-header>\r\n                <mat-panel-title> Filter </mat-panel-title>\r\n                <mat-panel-description> Click here to open </mat-panel-description>\r\n              </mat-expansion-panel-header>\r\n              <section class=\"example-section\">\r\n                <mat-form-field class=\"example-margin\">\r\n                  <input matInput placeholder=\"VIN\" aria-label=\"VIN\" formControlName=\"VIN\" (keyup)=\"onVINChange($event)\"/>\r\n                </mat-form-field>\r\n\r\n                <mat-form-field class=\"example-margin\"> \r\n                  <input matInput placeholder=\"Name\" aria-label=\"Name\" [matAutocomplete]=\"autoName\" formControlName=\"name\" />\r\n                  <mat-autocomplete #autoName=\"matAutocomplete\">\r\n                    <mat-option *ngFor=\"let client of filteredClients | async\" [value]=\"client.id\" (onSelectionChange)=\"onClientSelection(client.id)\">\r\n                      <img style=\"vertical-align:middle;\" aria-hidden src=\"{{client.avatar}}\" height=\"25\" />\r\n                      <span>{{ client.name }}</span>\r\n                    </mat-option>\r\n                  </mat-autocomplete>\r\n                </mat-form-field>\r\n                <mat-form-field class=\"example-margin\">\r\n                  <mat-select placeholder=\"Status\" formControlName=\"status\" (selectionChange)=\"onStatusSelection($event.value)\">\r\n                    <mat-option *ngFor=\"let s of statusList\" [value]=\"s.id\">\r\n                      {{s.status}}\r\n                    </mat-option>\r\n                  </mat-select>\r\n                </mat-form-field>\r\n              </section>\r\n            </mat-expansion-panel>\r\n          </mat-accordion>\r\n        </div>\r\n      </div>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</form>"
+module.exports = "<form [formGroup]='filterForm'>\r\n  <mat-card>\r\n    <mat-card-content>\r\n      <mat-card-title>{{ 'vehicles-list.filter.title' | translate }}</mat-card-title>\r\n\r\n\r\n      <!-- Row -->\r\n      <div fxLayout=\"row\" fxLayoutWrap=\"wrap\">\r\n        <!-- column -->\r\n        <div fxFlex.gt-sm=\"50\" fxFlex.gt-xs=\"50\">\r\n            {{ 'vehicles-list.filter.sub-title' | translate }}\r\n          <br /><br />\r\n\r\n          <mat-accordion>\r\n            <mat-expansion-panel>\r\n              <mat-expansion-panel-header>\r\n                <mat-panel-title> {{ 'vehicles-list.filter.filter' | translate }} </mat-panel-title>\r\n                <mat-panel-description> {{ 'vehicles-list.filter.filter-epxand-title' | translate }} </mat-panel-description>\r\n              </mat-expansion-panel-header>\r\n              <section class=\"example-section\">\r\n                <mat-form-field class=\"example-margin\">\r\n                  <input matInput placeholder=\"VIN\" aria-label=\"VIN\" formControlName=\"VIN\" (keyup)=\"onVINChange($event)\" />\r\n                  <mat-hint>{{ 'vehicles-list.filter.filter-placeholder.vin-caption' | translate }}</mat-hint>\r\n                </mat-form-field>\r\n\r\n               \r\n\r\n                <mat-form-field class=\"example-margin\">\r\n                  <mat-select formControlName=\"status\" (selectionChange)=\"onStatusSelection($event.value)\" placeholder=\"{{ 'vehicles-list.filter.filter-placeholder.status' | translate }}\">\r\n                      <mat-option>\r\n                          \r\n                        </mat-option>\r\n                    <mat-option *ngFor=\"let s of statusList\" [value]=\"s.id\">\r\n                      {{ 'vehicles-list.filter.filter-placeholder.' + s.status | translate}}\r\n                    </mat-option>\r\n                  </mat-select>\r\n                  <mat-hint>{{ 'vehicles-list.filter.filter-placeholder.status-caption' | translate }}</mat-hint>\r\n                </mat-form-field>\r\n\r\n                <mat-form-field class=\"example-margin\">\r\n                    <mat-chip-list #chipClientList>\r\n                      <mat-chip *ngFor=\"let client of selectedClients\" selectable=\"true\" removable=\"true\"\r\n                        (removed)=\"remove(client)\" color=\"primary\" aria-orientation=\"horizontal\" selected>\r\n                        {{client}}\r\n                        <mat-icon matChipRemove>cancel</mat-icon>\r\n                      </mat-chip>\r\n                      <input #txtName matInput aria-label=\"Name\" [matAutocomplete]=\"autoName\" formControlName=\"name\"\r\n                      [matChipInputFor]=\"chipClientList\" [matChipInputSeparatorKeyCodes]=\"separatorKeysCodes\" matChipInputAddOnBlur=\"true\" (matChipInputTokenEnd)=\"add($event)\" \r\n                      placeholder=\"{{ 'vehicles-list.filter.filter-placeholder.client' | translate }}\" />\r\n                      <mat-autocomplete #autoName=\"matAutocomplete\"  (optionSelected)=\"onClientSelection($event)\">\r\n                        <mat-option *ngFor=\"let client of filteredClients | async\" [value]=\"client.id\">\r\n                          <img style=\"vertical-align:middle;\" aria-hidden src=\"{{client.avatar}}\" height=\"40\" class=\"mr-6\" />\r\n                          <span>{{ client.name }}</span>\r\n                        </mat-option>\r\n                      </mat-autocomplete>\r\n                    </mat-chip-list>\r\n                    <mat-hint>{{ 'vehicles-list.filter.filter-placeholder.client-caption' | translate }}</mat-hint>\r\n                  </mat-form-field>\r\n              </section>\r\n            </mat-expansion-panel>\r\n          </mat-accordion>\r\n        </div>\r\n      </div>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</form>"
 
 /***/ }),
 
@@ -1688,7 +1733,7 @@ module.exports = "<form [formGroup]='filterForm'>\r\n  <mat-card>\r\n    <mat-ca
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-section {\n  display: flex;\n  align-content: center;\n  align-items: center;\n  height: 60px; }\n\n.example-margin {\n  margin: 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdmVoaWNsZXMvY29tcG9uZW50cy92ZWhpY2xlcy1maWx0ZXIvRTpcXHNiYVxccHJvamVjdHNcXEFsdGVuXFxjbGllbnRcXHZlaGljbGVzLW1vbml0b3Ivc3JjXFxhcHBcXHZlaGljbGVzXFxjb21wb25lbnRzXFx2ZWhpY2xlcy1maWx0ZXJcXHZlaGljbGVzLWZpbHRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLGNBQWE7RUFDYixzQkFBcUI7RUFDckIsb0JBQW1CO0VBQ25CLGFBQVksRUFDZjs7QUFFRDtFQUNJLGFBQVksRUFDZiIsImZpbGUiOiJzcmMvYXBwL3ZlaGljbGVzL2NvbXBvbmVudHMvdmVoaWNsZXMtZmlsdGVyL3ZlaGljbGVzLWZpbHRlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG4uZXhhbXBsZS1zZWN0aW9uIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBhbGlnbi1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgaGVpZ2h0OiA2MHB4O1xyXG59XHJcblxyXG4uZXhhbXBsZS1tYXJnaW4ge1xyXG4gICAgbWFyZ2luOiAxMHB4O1xyXG59Il19 */"
+module.exports = ".example-section {\n  display: flex;\n  align-content: center;\n  align-items: center;\n  height: 60px; }\n\n.example-margin {\n  margin: 10px; }\n\n.mr-6 {\n  margin-right: 6px; }\n\n.mat-standard-chip {\n  background-color: #26c6da;\n  color: white; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdmVoaWNsZXMvY29tcG9uZW50cy92ZWhpY2xlcy1maWx0ZXIvRTpcXHNiYVxccHJvamVjdHNcXEFsdGVuXFxjbGllbnRcXHZlaGljbGVzLW1vbml0b3Ivc3JjXFxhcHBcXHZlaGljbGVzXFxjb21wb25lbnRzXFx2ZWhpY2xlcy1maWx0ZXJcXHZlaGljbGVzLWZpbHRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLGNBQWE7RUFDYixzQkFBcUI7RUFDckIsb0JBQW1CO0VBQ25CLGFBQVksRUFDZjs7QUFFRDtFQUNJLGFBQVksRUFDZjs7QUFFRDtFQUNJLGtCQUFpQixFQUNwQjs7QUFFRDtFQUNJLDBCQUF5QjtFQUN6QixhQUFZLEVBQ2YiLCJmaWxlIjoic3JjL2FwcC92ZWhpY2xlcy9jb21wb25lbnRzL3ZlaGljbGVzLWZpbHRlci92ZWhpY2xlcy1maWx0ZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLmV4YW1wbGUtc2VjdGlvbiB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgYWxpZ24tY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGhlaWdodDogNjBweDtcclxufVxyXG5cclxuLmV4YW1wbGUtbWFyZ2luIHtcclxuICAgIG1hcmdpbjogMTBweDtcclxufVxyXG5cclxuLm1yLTYge1xyXG4gICAgbWFyZ2luLXJpZ2h0OiA2cHg7XHJcbn1cclxuXHJcbi5tYXQtc3RhbmRhcmQtY2hpcHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMyNmM2ZGE7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -1708,6 +1753,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var src_app_store_vehicles_all_vehicles_state_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/store/vehicles/all-vehicles/state-service */ "./src/app/store/vehicles/all-vehicles/state-service.ts");
+/* harmony import */ var _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/cdk/keycodes */ "./node_modules/@angular/cdk/esm5/keycodes.es5.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+
+
 
 
 
@@ -1727,8 +1776,9 @@ var VehiclesFilterComponent = /** @class */ (function () {
         this.fb = fb;
         this.service = service;
         this.currentVIN = null;
-        this.currentClient = null;
+        this.currentClient = [];
         this.currentStatus = null;
+        this.separatorKeysCodes = [_angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_5__["ENTER"], _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_5__["COMMA"]];
     }
     Object.defineProperty(VehiclesFilterComponent.prototype, "clients", {
         set: function (clientSnapshot) {
@@ -1751,14 +1801,20 @@ var VehiclesFilterComponent = /** @class */ (function () {
     VehiclesFilterComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.filterAllParam();
+        this.selectedClients = [];
         this.filterForm = this.fb.group({
             VIN: [],
-            name: [],
+            name: [[]],
             status: []
         });
         this.filteredClients = this.filterForm.controls["name"].valueChanges
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["debounceTime"])(300), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) {
-            return _this.clientsList.filter(function (v) { return v.name.toLowerCase().includes(value); });
+            return (value) ?
+                _this.clientsList.filter(function (v) {
+                    return v.name.toLowerCase().includes(value) &&
+                        !_this.selectedClients.includes(v.name);
+                }) :
+                _this.clientsList.filter(function (v) { return !_this.selectedClients.includes(v.name); });
         }));
     };
     VehiclesFilterComponent.prototype.onVINChange = function (event) {
@@ -1769,13 +1825,51 @@ var VehiclesFilterComponent = /** @class */ (function () {
         this.currentStatus = id;
         this.filterAllParam();
     };
-    VehiclesFilterComponent.prototype.onClientSelection = function (id) {
-        this.currentClient = id;
+    VehiclesFilterComponent.prototype.onClientSelection = function (event) {
+        this.currentClient.push(event.option.value);
+        if ((event.option.viewValue || '').trim())
+            this.selectedClients.push(event.option.viewValue);
+        this.txtName.nativeElement.value = '';
+        this.filterForm.controls["name"].setValue(null);
         this.filterAllParam();
     };
     VehiclesFilterComponent.prototype.filterAllParam = function () {
         this.service.dispatchFilter({ vin: this.currentVIN, status: this.currentStatus, client: this.currentClient });
     };
+    VehiclesFilterComponent.prototype.add = function (event) {
+        // Add client only when MatAutocomplete is not open
+        // To make sure this does not conflict with OptionSelected Event
+        if (!this.autoName.isOpen) {
+            var input = event.input;
+            var value = event.value;
+            // Add our client
+            if ((value || '').trim()) {
+                this.selectedClients.push(value["name"]);
+            }
+            // Reset the input value
+            if (input) {
+                input.value = '';
+            }
+            this.filterForm.controls["name"].setValue(null);
+        }
+    };
+    VehiclesFilterComponent.prototype.remove = function (item) {
+        var index = this.selectedClients.indexOf(item);
+        var index_current = this.currentClient.indexOf(this.clientsList.find(function (c) { return c.name == item; }).id);
+        if (index >= 0) {
+            this.selectedClients.splice(index, 1);
+            this.currentClient.splice(index_current, 1);
+            this.filterAllParam();
+        }
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('autoName'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatAutocomplete"])
+    ], VehiclesFilterComponent.prototype, "autoName", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('txtName'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], VehiclesFilterComponent.prototype, "txtName", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object),
@@ -1808,7 +1902,7 @@ var VehiclesFilterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card>\r\n  <mat-card-content>\r\n    <mat-card-title>Our Vehicles</mat-card-title>\r\n    <mat-card-subtitle><code class=\"\">Real-time updates!</code></mat-card-subtitle>\r\n    <!-- Row -->\r\n    <button mat-raised-button (click)=\"onloadVehiclesClick()\" id=\"toggle-linear\">Toggle 'real-time' Push Updates</button>\r\n    <div fxLayout=\"row\" fxLayoutWrap=\"wrap\">\r\n      <!-- column -->\r\n      <div fxFlex.gt-sm=\"50\" fxFlex.gt-xs=\"50\">\r\n        <div class=\"mat-elevation-z2\">\r\n          <table mat-table [dataSource]=\"dataSource\" matSort>\r\n            <ng-container matColumnDef=\"vin\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> VIN </th>\r\n              <td mat-cell *matCellDef=\"let row\"> {{row.vin}} </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"client\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> Client </th>\r\n              <td mat-cell *matCellDef=\"let row\"> {{row.client}} </td>\r\n            </ng-container>\r\n\r\n             <ng-container matColumnDef=\"make\">\r\n                <th mat-header-cell *matHeaderCellDef mat-sort-header> Make </th>\r\n                <td mat-cell *matCellDef=\"let row\"> \r\n                    {{row.make}}\r\n                  </td>\r\n              </ng-container>\r\n\r\n            <ng-container matColumnDef=\"regNum\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> register </th>\r\n              <td mat-cell *matCellDef=\"let row\"> {{row.regNum}} </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"status\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>\r\n              <td mat-cell *matCellDef=\"let row\"\r\n              [style.color]=\"(row.status == 1) ? 'green' : (row.status == 2) ? 'red' :\r\n                  (row.status == 3) ? 'grey' : (row.status == 4) ? 'yellow' : 'black'\"> \r\n                {{\r\n                  (row.status == 1) ? 'Connected' :\r\n                  (row.status == 2) ? 'Disconnected' :\r\n                  (row.status == 3) ? 'Oil check' :\r\n                  (row.status == 4) ? 'Engine issue' : '-'\r\n                }} \r\n              </td>\r\n            </ng-container>\r\n\r\n            <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n            <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n          </table>\r\n\r\n          <mat-paginator [pageSize]=\"10\" [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\r\n        </div>\r\n\r\n      </div>\r\n    </div>\r\n  </mat-card-content>\r\n</mat-card>"
+module.exports = "<mat-card>\r\n  <mat-card-content>\r\n    <mat-card-title>{{ 'vehicles-list.grid.title' | translate }}</mat-card-title>\r\n    <mat-card-subtitle>\r\n      <mat-slide-toggle [color]=\"Primary\" (change)=\"onChangeRealTime($event.checked)\" class=\"md-right\">\r\n        <code [class]=\"realTimeClass\">{{ 'vehicles-list.grid.sub-title' | translate }}</code>\r\n      </mat-slide-toggle>\r\n    </mat-card-subtitle>\r\n    <!-- Row -->\r\n\r\n    <div fxLayout=\"row\" fxLayoutWrap=\"wrap\">\r\n      <!-- column -->\r\n      <div fxFlex.gt-sm=\"50\" fxFlex.gt-xs=\"50\">\r\n        <div class=\"mat-elevation-z2\">\r\n          <table mat-table [dataSource]=\"dataSource\" matSort>\r\n            <ng-container matColumnDef=\"vin\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> VIN </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.vin}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"client\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.client' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.clientName}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"make\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.make' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.make}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"regNum\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.register' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.regNum}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"status\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.status' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\" [style.color]=\"row.statusColor\">\r\n                {{ 'vehicles-list.filter.filter-placeholder.' + row.statusName | translate }}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n            <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n          </table>\r\n\r\n          <mat-paginator [pageSize]=\"10\" [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\r\n        </div>\r\n\r\n      </div>\r\n    </div>\r\n  </mat-card-content>\r\n</mat-card>"
 
 /***/ }),
 
@@ -1819,7 +1913,7 @@ module.exports = "<mat-card>\r\n  <mat-card-content>\r\n    <mat-card-title>Our 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\n  width: 100%; }\n\n.mat-form-field {\n  font-size: 14px;\n  width: 100%; }\n\ntd,\nth {\n  width: 25%; }\n\n.s1 {\n  color: green; }\n\n.s2 {\n  color: red; }\n\n.s3 {\n  color: gray; }\n\n.s4 {\n  color: yellow; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdmVoaWNsZXMvY29tcG9uZW50cy92ZWhpY2xlcy1ncmlkL0U6XFxzYmFcXHByb2plY3RzXFxBbHRlblxcY2xpZW50XFx2ZWhpY2xlcy1tb25pdG9yL3NyY1xcYXBwXFx2ZWhpY2xlc1xcY29tcG9uZW50c1xcdmVoaWNsZXMtZ3JpZFxcdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGdCQUFlO0VBQ2YsWUFBVyxFQUNkOztBQUVEOztFQUVJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLGFBQVksRUFDZjs7QUFFRDtFQUNJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGNBQWEsRUFDaEIiLCJmaWxlIjoic3JjL2FwcC92ZWhpY2xlcy9jb21wb25lbnRzL3ZlaGljbGVzLWdyaWQvdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInRhYmxlIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4ubWF0LWZvcm0tZmllbGQge1xyXG4gICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbnRkLFxyXG50aCB7XHJcbiAgICB3aWR0aDogMjUlO1xyXG59XHJcblxyXG4uczF7XHJcbiAgICBjb2xvcjogZ3JlZW47XHJcbn1cclxuXHJcbi5zMntcclxuICAgIGNvbG9yOiByZWQ7XHJcbn1cclxuXHJcbi5zM3tcclxuICAgIGNvbG9yOiBncmF5O1xyXG59XHJcblxyXG4uczR7XHJcbiAgICBjb2xvcjogeWVsbG93O1xyXG59Il19 */"
+module.exports = "table {\n  width: 100%; }\n\n.mat-form-field {\n  font-size: 14px;\n  width: 100%; }\n\n.mat-column-make {\n  white-space: nowrap; }\n\ntd,\nth {\n  width: 25%; }\n\n.s1 {\n  color: green; }\n\n.s2 {\n  color: red; }\n\n.s3 {\n  color: gray; }\n\n.s4 {\n  color: yellow; }\n\n.md-right {\n  position: absolute;\n  right: 30px;\n  margin: 0;\n  top: 20px; }\n\n.green-snackbar {\n  background: green; }\n\n.red-snackbar {\n  background-color: red; }\n\n.real-time-green {\n  color: green; }\n\n.real-time-red {\n  color: red; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdmVoaWNsZXMvY29tcG9uZW50cy92ZWhpY2xlcy1ncmlkL0U6XFxzYmFcXHByb2plY3RzXFxBbHRlblxcY2xpZW50XFx2ZWhpY2xlcy1tb25pdG9yL3NyY1xcYXBwXFx2ZWhpY2xlc1xcY29tcG9uZW50c1xcdmVoaWNsZXMtZ3JpZFxcdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGdCQUFlO0VBQ2YsWUFBVyxFQUNkOztBQUNEO0VBQ0ksb0JBQW1CLEVBQ3BCOztBQUNIOztFQUVJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLGFBQVksRUFDZjs7QUFFRDtFQUNJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGNBQWEsRUFDaEI7O0FBRUQ7RUFDSSxtQkFBa0I7RUFDbEIsWUFBVztFQUNYLFVBQVM7RUFDVCxVQUFTLEVBQ1o7O0FBRUQ7RUFDSSxrQkFBaUIsRUFDcEI7O0FBRUQ7RUFDSSxzQkFBcUIsRUFDeEI7O0FBRUQ7RUFDSSxhQUFZLEVBQ2Y7O0FBRUQ7RUFDSSxXQUFVLEVBQ2IiLCJmaWxlIjoic3JjL2FwcC92ZWhpY2xlcy9jb21wb25lbnRzL3ZlaGljbGVzLWdyaWQvdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInRhYmxlIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4ubWF0LWZvcm0tZmllbGQge1xyXG4gICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuLm1hdC1jb2x1bW4tbWFrZSB7XHJcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xyXG4gIH1cclxudGQsXHJcbnRoIHtcclxuICAgIHdpZHRoOiAyNSU7XHJcbn1cclxuXHJcbi5zMXtcclxuICAgIGNvbG9yOiBncmVlbjtcclxufVxyXG5cclxuLnMye1xyXG4gICAgY29sb3I6IHJlZDtcclxufVxyXG5cclxuLnMze1xyXG4gICAgY29sb3I6IGdyYXk7XHJcbn1cclxuXHJcbi5zNHtcclxuICAgIGNvbG9yOiB5ZWxsb3c7XHJcbn1cclxuXHJcbi5tZC1yaWdodHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHJpZ2h0OiAzMHB4O1xyXG4gICAgbWFyZ2luOiAwO1xyXG4gICAgdG9wOiAyMHB4O1xyXG59XHJcblxyXG4uZ3JlZW4tc25hY2tiYXIge1xyXG4gICAgYmFja2dyb3VuZDogZ3JlZW47XHJcbn1cclxuXHJcbi5yZWQtc25hY2tiYXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xyXG59XHJcblxyXG4ucmVhbC10aW1lLWdyZWVuIHtcclxuICAgIGNvbG9yOiBncmVlbjtcclxufVxyXG5cclxuLnJlYWwtdGltZS1yZWQge1xyXG4gICAgY29sb3I6IHJlZDtcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -1840,31 +1934,54 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var VehiclesGridComponent = /** @class */ (function () {
-    function VehiclesGridComponent() {
-        this.displayedColumns = ['vin', 'client', 'regNum', 'make', 'status'];
-        this.loadVehicles = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+    function VehiclesGridComponent(snackBar) {
+        this.snackBar = snackBar;
+        this.displayedColumns = ['vin', 'status', 'client', 'regNum', 'make'];
+        this.isRealTime = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
-    Object.defineProperty(VehiclesGridComponent.prototype, "items", {
-        set: function (val) {
-            if (val) {
-                this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](val);
-                this.dataSource.data = val;
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-            }
+    Object.defineProperty(VehiclesGridComponent.prototype, "clients", {
+        set: function (data) {
+            if (data)
+                this._clients = data.val().slice(1);
         },
         enumerable: true,
         configurable: true
     });
-    VehiclesGridComponent.prototype.ngOnInit = function () {
+    Object.defineProperty(VehiclesGridComponent.prototype, "status", {
+        set: function (data) {
+            if (data)
+                this._status = data.val().slice(1);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    VehiclesGridComponent.prototype.ngOnChanges = function (changes) {
+        var _this = this;
+        if (this._clients && this._status && this.items) {
+            var result = this.items.map(function (v) { return _this.mapper(v); });
+            this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](result);
+            this.dataSource.data = result;
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        }
     };
-    VehiclesGridComponent.prototype.onloadVehiclesClick = function () {
-        this.loadVehicles.emit();
+    VehiclesGridComponent.prototype.mapper = function (item) {
+        var clientFiltered = this._clients.find(function (c) { return c.id == item.client; });
+        var statusFiltered = this._status.find(function (s) { return s.id == item.status; });
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, item, { clientName: (clientFiltered) ? clientFiltered.name : item.client, statusName: (statusFiltered) ? statusFiltered.status : item.status, statusColor: (statusFiltered) ? statusFiltered.color : 'black' });
+    };
+    VehiclesGridComponent.prototype.onChangeRealTime = function (isChecked) {
+        this.isRealTime.emit(isChecked);
+        this.realTimeClass = (isChecked) ? 'real-time-green' : 'real-time-red';
+        this.snackBar.open('real-time updates', (isChecked) ? 'On' : 'Off', {
+            duration: 2000,
+            panelClass: [(isChecked) ? 'green-snackbar' : 'red-snackbar']
+        });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], VehiclesGridComponent.prototype, "loadVehicles", void 0);
+    ], VehiclesGridComponent.prototype, "isRealTime", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginator"]),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginator"])
@@ -1875,16 +1992,26 @@ var VehiclesGridComponent = /** @class */ (function () {
     ], VehiclesGridComponent.prototype, "sort", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Array])
-    ], VehiclesGridComponent.prototype, "items", null);
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object])
+    ], VehiclesGridComponent.prototype, "clients", null);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object])
+    ], VehiclesGridComponent.prototype, "status", null);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
+    ], VehiclesGridComponent.prototype, "items", void 0);
     VehiclesGridComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'veh-vehicles-grid',
             template: __webpack_require__(/*! ./vehicles-grid.component.html */ "./src/app/vehicles/components/vehicles-grid/vehicles-grid.component.html"),
+            changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectionStrategy"].OnPush,
             styles: [__webpack_require__(/*! ./vehicles-grid.component.scss */ "./src/app/vehicles/components/vehicles-grid/vehicles-grid.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]])
     ], VehiclesGridComponent);
     return VehiclesGridComponent;
 }());
@@ -1900,7 +2027,7 @@ var VehiclesGridComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div fxLayout=\"row\" fxLayoutWrap=\"wrap\">\r\n  <!-- column -->\r\n  <div fxFlex.gt-sm=\"100\" fxFlex.gt-xs=\"100\" fxFlex=\"100\">\r\n    <veh-firebase-backend-simulator [isUpdateRandomVehicles]=\"isUpdateRandomVehicles$ | async\" [isStartListening]=\"isStartListening$ | async\"></veh-firebase-backend-simulator>\r\n      <veh-vehicles-filter [clients]=\"clients$ | async\" [status]=\"status$ | async\"></veh-vehicles-filter>\r\n      <veh-vehicles-grid [items]=\"vehicles$ | async\" (loadVehicles)=\"onLoadVehicles()\"></veh-vehicles-grid>\r\n  </div>\r\n  <!-- column -->\r\n</div>"
+module.exports = "\r\n<div fxLayout=\"row\" fxLayoutWrap=\"wrap\">\r\n  <!-- column -->\r\n  <div fxFlex.gt-sm=\"100\" fxFlex.gt-xs=\"100\" fxFlex=\"100\">\r\n    <veh-firebase-backend-simulator [isUpdateRandomVehicles]=\"isUpdateRandomVehicles$ | async\" [isStartListening]=\"isStartListening$ | async\"></veh-firebase-backend-simulator>\r\n      <veh-vehicles-filter [clients]=\"clients$ | async\" [status]=\"status$ | async\"></veh-vehicles-filter>\r\n      <veh-vehicles-grid [clients]=\"clients$ | async\" [status]=\"status$ | async\"  [items]=\"vehicles$ | async\"  (isRealTime)=\"onIsRealTimeChanged($event)\"></veh-vehicles-grid>\r\n  </div>\r\n  <!-- column -->\r\n</div>"
 
 /***/ }),
 
@@ -1942,15 +2069,12 @@ var VehiclesListPageComponent = /** @class */ (function () {
         this.vehicles$ = this.service.selectItems();
         this.clients$ = this.fbService.getAllClients();
         this.status$ = this.fbService.getAllStatus();
-        this.toggleEnable = false;
     }
     VehiclesListPageComponent.prototype.ngOnInit = function () {
     };
-    VehiclesListPageComponent.prototype.onLoadVehicles = function () {
-        this.toggleEnable = !this.toggleEnable;
-        console.log(" toggle " + this.toggleEnable);
-        this.isStartListening$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(this.toggleEnable);
-        this.isUpdateRandomVehicles$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(this.toggleEnable);
+    VehiclesListPageComponent.prototype.onIsRealTimeChanged = function (isRealTime) {
+        this.isStartListening$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(isRealTime);
+        this.isUpdateRandomVehicles$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(isRealTime);
     };
     VehiclesListPageComponent.prototype.ngOnDestroy = function () {
         this.isStartListening$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(false);
@@ -2035,10 +2159,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vehicles_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./vehicles-routing.module */ "./src/app/vehicles/vehicles-routing.module.ts");
 /* harmony import */ var _pages_vehicles_list_page_vehicles_list_page_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/vehicles-list-page/vehicles-list-page.component */ "./src/app/vehicles/pages/vehicles-list-page/vehicles-list-page.component.ts");
 /* harmony import */ var _components_vehicles_grid_vehicles_grid_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/vehicles-grid/vehicles-grid.component */ "./src/app/vehicles/components/vehicles-grid/vehicles-grid.component.ts");
-/* harmony import */ var _shared_material_material_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../shared/material/material.module */ "./src/app/shared/material/material.module.ts");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../shared/shared.module */ "./src/app/shared/shared.module.ts");
 /* harmony import */ var _components_vehicles_filter_vehicles_filter_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/vehicles-filter/vehicles-filter.component */ "./src/app/vehicles/components/vehicles-filter/vehicles-filter.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../core/core.module */ "./src/app/core/core.module.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+
 
 
 
@@ -2058,11 +2184,13 @@ var VehiclesModule = /** @class */ (function () {
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _vehicles_routing_module__WEBPACK_IMPORTED_MODULE_3__["VehiclesRoutingModule"],
-                _shared_material_material_module__WEBPACK_IMPORTED_MODULE_6__["MaterialModule"],
+                _shared_shared_module__WEBPACK_IMPORTED_MODULE_6__["SharedModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"],
-                _core_core_module__WEBPACK_IMPORTED_MODULE_9__["CoreModule"]
-            ]
+                _core_core_module__WEBPACK_IMPORTED_MODULE_9__["CoreModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_10__["MatSnackBarModule"]
+            ],
+            providers: [_angular_material__WEBPACK_IMPORTED_MODULE_10__["MatSnackBar"]]
         })
     ], VehiclesModule);
     return VehiclesModule;
