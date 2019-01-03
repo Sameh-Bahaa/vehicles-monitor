@@ -16,7 +16,8 @@ import {
   MatMenuModule,
   MatToolbarModule,
   MatSlideToggleModule,
-  MatChipsModule
+  MatChipsModule,
+  MatSortModule
 } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -40,7 +41,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     MatMenuModule,
     MatToolbarModule,
     MatSlideToggleModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSortModule
   ],
   exports: [
     //NoopAnimationsModule,
@@ -60,7 +62,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     MatMenuModule,
     MatToolbarModule,
     MatSlideToggleModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSortModule
   ]
 
 })

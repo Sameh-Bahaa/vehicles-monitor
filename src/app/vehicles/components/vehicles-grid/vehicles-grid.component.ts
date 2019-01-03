@@ -12,7 +12,7 @@ import { statusDTO } from 'src/app/shared/DTOs/status';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VehiclesGridComponent implements OnChanges {
-  private displayedColumns = ['vin', 'client', 'regNum', 'make', 'status'];
+  private displayedColumns = ['vin', 'status', 'client', 'regNum', 'make'];
   private dataSource: MatTableDataSource<vehicleDto>;
   private realTimeClass: string;
   @Output() isRealTime = new EventEmitter<boolean>();
