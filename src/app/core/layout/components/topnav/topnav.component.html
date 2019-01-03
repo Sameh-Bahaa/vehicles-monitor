@@ -3,10 +3,10 @@
 </button>
 <mat-menu #language="matMenu">
     <button mat-menu-item (click)="changeLang('en')">
-        <span>{{ 'English' }}</span>
+        <span>{{ 'layout.menu.language.en' | translate }}</span>
     </button>
     <button mat-menu-item (click)="changeLang('sv')">
-        <span>{{ 'Swedish' }}</span>
+        <span>{{ 'layout.menu.language.sv' | translate }}</span>
     </button>
 </mat-menu>
 <button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="profile">
@@ -15,9 +15,11 @@
 <mat-menu #profile="matMenu" class="mymegamenu">
     
     <button mat-menu-item>
-        <mat-icon>settings</mat-icon> Settings
+        <mat-icon>settings</mat-icon>
+        {{ 'layout.menu.settings' | translate }}
     </button>
     <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon> Sign Out
+        <mat-icon>exit_to_app</mat-icon> 
+        {{ 'layout.menu.sign-out' | translate }}
     </button>
 </mat-menu>

@@ -6,7 +6,9 @@ table {
     font-size: 14px;
     width: 100%;
 }
-
+.mat-column-make {
+    white-space: nowrap;
+  }
 td,
 th {
     width: 25%;

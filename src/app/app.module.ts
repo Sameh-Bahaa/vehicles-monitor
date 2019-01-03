@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VehiclesModule } from './vehicles/vehicles.module';
 import { VehiclesStoreModule } from './store/store.module';
 import 'hammerjs';
+import { TranslateService  } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -36,4 +37,13 @@ import 'hammerjs';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+  constructor(translate: TranslateService) {
+    // this language will be used as a fallback when a translation isn't found in the current language
+    translate.setDefaultLang('sv');
+
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    translate.use('sv');
+  }
+ }

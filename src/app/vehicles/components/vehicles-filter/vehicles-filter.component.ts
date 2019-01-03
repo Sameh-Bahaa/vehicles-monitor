@@ -8,7 +8,7 @@ import { clientDTO } from 'src/app/shared/DTOs/client';
 import { statusDTO } from 'src/app/shared/DTOs/status';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatAutocomplete, MatAutocompleteSelectedEvent, MatIcon } from '@angular/material';
-
+ 
 export class State {
   constructor(public name: string, public population: string, public flag: string) { }
 }

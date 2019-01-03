@@ -1,0 +1,42 @@
+{
+    "vehicles-list": {
+        "filter": {
+            "title": "Vehicles Filter",
+            "sub-title": "Now you can filter our monitored vehicles by their vin, Status & Owner",
+            "filter": "Filter",
+            "filter-epxand-title" :  "Click here to open",
+            "filter-placeholder" : {
+                "vin-caption": "Vehicle identification number",
+                "status": "Select status",
+                "status-caption": "Vehicle status",
+                "client": "Client name",
+                "client-caption": "Vehicle owner",
+                "Connected": "Connected",
+                "Disconnected" : "Disconnected",
+                "Oil check" : "Oil check",
+                "Engine issue" : "Engine issue"
+            }
+        },
+        "grid" : {
+            "title" : "Our Vehicles",
+            "sub-title" : "Real-time updates!",
+            "status" : "Status",
+            "client" : "Client",
+            "register" : "Register number",
+            "make" : "Vehicle make"
+
+        }
+    },
+    "layout" : {
+        "menu" : {
+            "dashboard" : "Dashboard",
+            "vehicles-list" : "Vehicles List",
+            "settings": "Settings",
+            "sign-out" : "Sign Out",
+            "language" : {
+                "en" : "English",
+                "sv" : "Swedish"
+            }
+        }
+    }
+}

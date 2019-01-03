@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { VehiclesRoutingModule } from './vehicles-routing.module';
 import { VehiclesListPageComponent } from './pages/vehicles-list-page/vehicles-list-page.component';
 import { VehiclesGridComponent } from './components/vehicles-grid/vehicles-grid.component';
-import { MaterialModule } from '../shared/material/material.module';
+import { SharedModule } from '../shared/shared.module';
 import { VehiclesFilterComponent } from './components/vehicles-filter/vehicles-filter.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CoreModule } from '../core/core.module';
@@ -15,7 +15,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material';
   imports: [
     CommonModule,
     VehiclesRoutingModule,
-    MaterialModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     CoreModule,

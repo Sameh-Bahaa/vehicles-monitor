@@ -1,40 +1,40 @@
 <form [formGroup]='filterForm'>
   <mat-card>
     <mat-card-content>
-      <mat-card-title>Vehicles Filter</mat-card-title>
+      <mat-card-title>{{ 'vehicles-list.filter.title' | translate }}</mat-card-title>
 
 
       <!-- Row -->
       <div fxLayout="row" fxLayoutWrap="wrap">
         <!-- column -->
         <div fxFlex.gt-sm="50" fxFlex.gt-xs="50">
-          Now you can filter our monitored vichels by their Status or by the Owner
+            {{ 'vehicles-list.filter.sub-title' | translate }}
           <br /><br />
 
           <mat-accordion>
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                <mat-panel-title> Filter </mat-panel-title>
-                <mat-panel-description> Click here to open </mat-panel-description>
+                <mat-panel-title> {{ 'vehicles-list.filter.filter' | translate }} </mat-panel-title>
+                <mat-panel-description> {{ 'vehicles-list.filter.filter-epxand-title' | translate }} </mat-panel-description>
               </mat-expansion-panel-header>
               <section class="example-section">
                 <mat-form-field class="example-margin">
                   <input matInput placeholder="VIN" aria-label="VIN" formControlName="VIN" (keyup)="onVINChange($event)" />
-                  <mat-hint>Vehicle Identifiction Number</mat-hint>
+                  <mat-hint>{{ 'vehicles-list.filter.filter-placeholder.vin-caption' | translate }}</mat-hint>
                 </mat-form-field>
 
                
 
                 <mat-form-field class="example-margin">
-                  <mat-select placeholder="Select Status" formControlName="status" (selectionChange)="onStatusSelection($event.value)">
+                  <mat-select formControlName="status" (selectionChange)="onStatusSelection($event.value)" placeholder="{{ 'vehicles-list.filter.filter-placeholder.status' | translate }}">
                       <mat-option>
                           
                         </mat-option>
                     <mat-option *ngFor="let s of statusList" [value]="s.id">
-                      {{s.status}}
+                      {{ 'vehicles-list.filter.filter-placeholder.' + s.status | translate}}
                     </mat-option>
                   </mat-select>
-                  <mat-hint>Vehicle Status</mat-hint>
+                  <mat-hint>{{ 'vehicles-list.filter.filter-placeholder.status-caption' | translate }}</mat-hint>
                 </mat-form-field>
 
                 <mat-form-field class="example-margin">
@@ -44,8 +44,9 @@
                         {{client}}
                         <mat-icon matChipRemove>cancel</mat-icon>
                       </mat-chip>
-                      <input #txtName matInput placeholder="Client" aria-label="Name" [matAutocomplete]="autoName" formControlName="name"
-                      [matChipInputFor]="chipClientList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" matChipInputAddOnBlur="true" (matChipInputTokenEnd)="add($event)" />
+                      <input #txtName matInput aria-label="Name" [matAutocomplete]="autoName" formControlName="name"
+                      [matChipInputFor]="chipClientList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" matChipInputAddOnBlur="true" (matChipInputTokenEnd)="add($event)" 
+                      placeholder="{{ 'vehicles-list.filter.filter-placeholder.client' | translate }}" />
                       <mat-autocomplete #autoName="matAutocomplete"  (optionSelected)="onClientSelection($event)">
                         <mat-option *ngFor="let client of filteredClients | async" [value]="client.id">
                           <img style="vertical-align:middle;" aria-hidden src="{{client.avatar}}" height="40" class="mr-6" />
@@ -53,7 +54,7 @@
                         </mat-option>
                       </mat-autocomplete>
                     </mat-chip-list>
-                    <mat-hint>Vehicle Owner</mat-hint>
+                    <mat-hint>{{ 'vehicles-list.filter.filter-placeholder.client-caption' | translate }}</mat-hint>
                   </mat-form-field>
               </section>
             </mat-expansion-panel>

@@ -13,15 +13,20 @@
   
 </div>
 <mat-nav-list appAccordion>
-  <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected">
-      <a class="" appAccordionToggle [routerLink]="['/', menuitem.state]" *ngIf="menuitem.type === 'link'">
-          <mat-icon>{{ menuitem.icon }}</mat-icon> 
-          <span>{{ menuitem.name }}</span> 
+  <mat-list-item appAccordionLink  routerLinkActive="selected">
+      <a class="" appAccordionToggle [routerLink]="['/dashboard']">
+          <mat-icon>dashboard</mat-icon> 
+          <span>{{ 'layout.menu.dashboard' | translate }}</span> 
           <span fxFlex></span> 
-          <span class="label label-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span> 
       </a>
+  </mat-list-item>
 
-      
+  <mat-list-item appAccordionLink  routerLinkActive="selected">
+      <a class="" appAccordionToggle [routerLink]="['/vehicles']">
+          <mat-icon>local_car_wash</mat-icon> 
+          <span>{{ 'layout.menu.vehicles-list' | translate }}</span> 
+          <span fxFlex></span> 
+      </a>
   </mat-list-item>
 
 </mat-nav-list>

@@ -1,0 +1,42 @@
+{
+    "vehicles-list": {
+        "filter": {
+            "title": "Fordon Filter",
+            "sub-title": "Nu kan du filtrera våra övervakade fordon av deras vin, Status & ägare",
+            "filter": "Filtret",
+            "filter-epxand-title" :  "Klicka här för att öppna",
+            "filter-placeholder" : {
+                "vin-caption": "Fordonets identifieringsnummer",
+                "status": "Välj status",
+                "status-caption": "Fordonets status",
+                "client": "Klientens namn",
+                "client-caption": "Fordonets ägare",
+                "Connected": "Anslutna",
+                "Disconnected" : "Frånkopplad",
+                "Oil check" : "Olja in",
+                "Engine issue" : "Motorn problemet"
+            }
+        },
+        "grid" : {
+            "title" : "Våra fordon",
+            "sub-title" : "Uppdateringar i realtid!",
+            "status" : "Status",
+            "client" : "Klienten",
+            "register" : "Registrerings nummer",
+            "make" : "Fordonets fabrikat"
+
+        }
+    },
+    "layout" : {
+        "menu" : {
+            "dashboard" : "Instrumentpanelen",
+            "vehicles-list" : "Fordon lista",
+            "settings": "Inställningar",
+            "sign-out" : "Logga ut",
+            "language" : {
+                "en" : "Engelska",
+                "sv" : "Svenska"
+            }
+        }
+    }
+}
