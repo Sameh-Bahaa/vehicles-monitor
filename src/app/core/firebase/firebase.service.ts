@@ -23,7 +23,10 @@ export class FirebaseService {
       storageBucket: "vehicles-monitor.appspot.com",
       messagingSenderId: "992146194138"
     };
-    firebase.initializeApp(config);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config);
+    }
+
 
     this.db = firebase.database();
   }
@@ -44,7 +47,7 @@ export class FirebaseService {
     this.db.ref('vehicles/' + vehicleID).update({ status: status }, function (error) {
       if (error) {
         console.error(error)
-      } 
+      }
     });
   }
 

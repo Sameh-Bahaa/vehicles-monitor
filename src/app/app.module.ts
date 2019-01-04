@@ -34,7 +34,6 @@ import { TranslateService  } from '@ngx-translate/core';
     VehiclesStoreModule
     
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 

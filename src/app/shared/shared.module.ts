@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { MaterialModule } from './material/material.module';
-import { MenuItems } from './menu-items/menu-items';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -26,8 +25,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
   exports: [
     MaterialModule,
     TranslateModule
-  ],
-  providers: [MenuItems]
+  ]
 })
 export class SharedModule { }
 

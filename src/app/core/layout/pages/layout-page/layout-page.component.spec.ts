@@ -6,8 +6,8 @@ import { TopnavComponent } from '../../components/topnav/topnav.component';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MenuItems } from 'src/app/shared/menu-items/menu-items';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 describe('LayoutPageComponent', () => {
@@ -16,9 +16,9 @@ describe('LayoutPageComponent', () => {
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, RouterTestingModule, BrowserAnimationsModule],
+      imports: [MaterialModule, RouterTestingModule, BrowserAnimationsModule, TranslateModule.forRoot()],
       declarations: [LayoutPageComponent, TopnavComponent, SidebarComponent, SpinnerComponent],
-      providers: [MenuItems]
+      
     })
       .compileComponents();
   }));

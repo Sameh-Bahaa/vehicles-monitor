@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FirebaseBackendSimulatorComponent } from './firebase-backend-simulator.component';
+import { FirebaseService } from '../firebase.service';
+import { VehiclesStateService } from 'src/app/store/vehicles/all-vehicles/state-service';
+import { Store, StoreModule } from '@ngrx/store';
+import { VehiclesActions } from 'src/app/store/vehicles/all-vehicles/actions';
 
 describe('FirebaseBackendSimulatorComponent', () => {
   let component: FirebaseBackendSimulatorComponent;
@@ -8,7 +12,9 @@ describe('FirebaseBackendSimulatorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FirebaseBackendSimulatorComponent ]
+      imports: [StoreModule.forRoot({})],
+      declarations: [ FirebaseBackendSimulatorComponent ],
+      providers: [FirebaseService, VehiclesStateService, Store, VehiclesActions]
     })
     .compileComponents();
   }));

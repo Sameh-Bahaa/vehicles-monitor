@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TopnavComponent } from './topnav.component';
 import { MaterialModule } from 'src/app/shared/material/material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('TopnavComponent', () => {
   let component: TopnavComponent;
@@ -9,7 +10,7 @@ describe('TopnavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule],
+      imports: [MaterialModule, TranslateModule.forRoot()],
       declarations: [ TopnavComponent ]
     })
     .compileComponents();
