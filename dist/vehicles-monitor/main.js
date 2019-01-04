@@ -656,7 +656,7 @@ var SpinnerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"language\">\r\n    <mat-icon>language</mat-icon>\r\n</button>\r\n<mat-menu #language=\"matMenu\">\r\n    <button mat-menu-item (click)=\"changeLang('en')\">\r\n        <span>{{ 'layout.menu.language.en' | translate }}</span>\r\n    </button>\r\n    <button mat-menu-item (click)=\"changeLang('sv')\">\r\n        <span>{{ 'layout.menu.language.sv' | translate }}</span>\r\n    </button>\r\n</mat-menu>\r\n<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"profile\">\r\n    <mat-icon>account_circle</mat-icon>\r\n</button>\r\n<mat-menu #profile=\"matMenu\" class=\"mymegamenu\">\r\n    \r\n    <button mat-menu-item>\r\n        <mat-icon>settings</mat-icon>\r\n        {{ 'layout.menu.settings' | translate }}\r\n    </button>\r\n    <button mat-menu-item>\r\n        <mat-icon>exit_to_app</mat-icon> \r\n        {{ 'layout.menu.sign-out' | translate }}\r\n    </button>\r\n</mat-menu>"
+module.exports = "<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"language\">\r\n    <mat-icon>language</mat-icon>\r\n</button>\r\n<mat-menu #language=\"matMenu\">\r\n    <button mat-menu-item (click)=\"changeLang('en')\">\r\n        <span>{{ 'layout.menu.language.en' | translate }}</span>\r\n    </button>\r\n    <button mat-menu-item (click)=\"changeLang('sv')\">\r\n        <span>{{ 'layout.menu.language.sv' | translate }}</span>\r\n    </button>\r\n</mat-menu>\r\n<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"profile\">\r\n    <mat-icon>account_circle</mat-icon>\r\n</button>\r\n<mat-menu #profile=\"matMenu\" class=\"mymegamenu\">\r\n\r\n    <button mat-menu-item>\r\n        <mat-icon>settings</mat-icon>\r\n        {{ 'layout.menu.settings' | translate }}\r\n    </button>\r\n    <button mat-menu-item>\r\n        <mat-icon>exit_to_app</mat-icon>\r\n        {{ 'layout.menu.sign-out' | translate }}\r\n    </button>\r\n</mat-menu>\r\n\r\n<button class=\"hidden-sm\" mat-icon-button (click)=\"toggleFullscreen()\">\r\n    <mat-icon>{{(isFullScreen) ? 'fullscreen_exit' : 'fullscreen'}}</mat-icon>\r\n</button>"
 
 /***/ }),
 
@@ -684,17 +684,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm5/ngx-translate-core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+
 
 
 
 var TopnavComponent = /** @class */ (function () {
-    function TopnavComponent(translate) {
+    function TopnavComponent(translate, document) {
         this.translate = translate;
+        this.document = document;
     }
-    TopnavComponent.prototype.ngOnInit = function () {
-    };
     TopnavComponent.prototype.changeLang = function (lang) {
         this.translate.use(lang);
+    };
+    TopnavComponent.prototype.ngOnInit = function () {
+        this.elem = document.documentElement;
+        this.isFullScreen = false;
+    };
+    TopnavComponent.prototype.toggleFullscreen = function () {
+        if (this.isFullScreen)
+            this.closeFullscreen();
+        else
+            this.openFullscreen();
+        this.isFullScreen = !this.isFullScreen;
+    };
+    TopnavComponent.prototype.openFullscreen = function () {
+        if (this.elem.requestFullscreen) {
+            this.elem.requestFullscreen();
+        }
+        else if (this.elem.mozRequestFullScreen) {
+            /* Firefox */
+            this.elem.mozRequestFullScreen();
+        }
+        else if (this.elem.webkitRequestFullscreen) {
+            /* Chrome, Safari and Opera */
+            this.elem.webkitRequestFullscreen();
+        }
+        else if (this.elem.msRequestFullscreen) {
+            /* IE/Edge */
+            this.elem.msRequestFullscreen();
+        }
+    };
+    /* Close fullscreen */
+    TopnavComponent.prototype.closeFullscreen = function () {
+        if (this.document.exitFullscreen) {
+            this.document.exitFullscreen();
+        }
+        else if (this.document.mozCancelFullScreen) {
+            /* Firefox */
+            this.document.mozCancelFullScreen();
+        }
+        else if (this.document.webkitExitFullscreen) {
+            /* Chrome, Safari and Opera */
+            this.document.webkitExitFullscreen();
+        }
+        else if (this.document.msExitFullscreen) {
+            /* IE/Edge */
+            this.document.msExitFullscreen();
+        }
     };
     TopnavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -702,7 +749,8 @@ var TopnavComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./topnav.component.html */ "./src/app/core/layout/components/topnav/topnav.component.html"),
             styles: [__webpack_require__(/*! ./topnav.component.scss */ "./src/app/core/layout/components/topnav/topnav.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__["TranslateService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__["TranslateService"], Object])
     ], TopnavComponent);
     return TopnavComponent;
 }());
