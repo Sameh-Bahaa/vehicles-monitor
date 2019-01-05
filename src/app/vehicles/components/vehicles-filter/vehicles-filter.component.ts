@@ -61,7 +61,7 @@ export class VehiclesFilterComponent implements OnInit {
         map((value: string | null) =>
           (value) ? 
           this.clientsList.filter(v => 
-            v.name.toLowerCase().includes(value) && 
+            v.name.toLowerCase().includes(value.toLowerCase()) && 
             !this.selectedClients.includes(v.name)) : 
             
             this.clientsList.filter( v => !this.selectedClients.includes(v.name))

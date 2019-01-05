@@ -1,7 +1,7 @@
 <div class="main-container">
     <mat-toolbar color="primary" class="topbar telative">
         <div class="navbar-header">
-            <a class="navbar-brand" [style.display]="mobileQuery.matches ? 'block' : 'none'">
+            <a class="navbar-brand">
                 <!-- Logo icon -->
                 <b>
                     <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo">
@@ -9,7 +9,7 @@
                 </b>
                 <!--End Logo icon -->
                 <!-- Logo text -->
-                <span fxShow="false" fxShow.gt-xs>
+                <span fxShow="false" fxShow.gt-xs [style.display]="mobileQuery.matches ? 'block' : 'none'">
                     <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo">
                     <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" style="width:160px;">
                 </span> </a>

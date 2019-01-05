@@ -814,7 +814,7 @@ var LayoutModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-container\">\r\n    <mat-toolbar color=\"primary\" class=\"topbar telative\">\r\n        <div class=\"navbar-header\">\r\n            <a class=\"navbar-brand\" [style.display]=\"mobileQuery.matches ? 'block' : 'none'\">\r\n                <!-- Logo icon -->\r\n                <b>\r\n                    <img src=\"assets/images/logo-icon.png\" alt=\"homepage\" class=\"dark-logo\">\r\n                    <img src=\"assets/images/c3.png\" alt=\"homepage\" class=\"light-logo\" style=\"width:40px;\">\r\n                </b>\r\n                <!--End Logo icon -->\r\n                <!-- Logo text -->\r\n                <span fxShow=\"false\" fxShow.gt-xs>\r\n                    <img src=\"assets/images/logo-text.png\" alt=\"homepage\" class=\"dark-logo\">\r\n                    <img src=\"assets/images/logo-light-text.png\" class=\"light-logo\" alt=\"homepage\" style=\"width:160px;\">\r\n                </span> </a>\r\n        </div>\r\n\r\n        <button mat-icon-button (click)=\"snav.toggle()\" value=\"sidebarclosed\">\r\n            <mat-icon>menu</mat-icon>\r\n        </button>\r\n        <span fxFlex style=\"flex: 1 1 0%;box-sizing: border-box;\"></span>\r\n\r\n        <veh-topnav></veh-topnav>\r\n        <button mat-icon-button (click)=\"toggleFullscreen()\" [style.display]=\"mobileQuery.matches ? 'block' : 'none'\">\r\n                <mat-icon>{{(isFullScreen) ? 'fullscreen_exit' : 'fullscreen'}}</mat-icon>\r\n            </button>\r\n    </mat-toolbar>\r\n\r\n    <mat-sidenav-container class=\"example-sidenav-container\" [style.marginTop.px]=\"mobileQuery.matches ? 0 : 0\">\r\n        <mat-sidenav #snav id=\"snav\" class=\"dark-sidebar pl-xs\" [mode]=\"mobileQuery.matches ? 'side' : 'over'\"\r\n            fixedTopGap=\"0\" [opened]=\"mobileQuery.matches\" [disableClose]=\"mobileQuery.matches\">\r\n            <veh-sidebar></veh-sidebar>\r\n        </mat-sidenav>\r\n\r\n        <mat-sidenav-content class=\"page-wrapper\">\r\n            <div class=\"page-content\">\r\n                <router-outlet>\r\n                    <veh-spinner></veh-spinner>\r\n                </router-outlet>\r\n            </div>\r\n        </mat-sidenav-content>\r\n    </mat-sidenav-container>\r\n</div>"
+module.exports = "<div class=\"main-container\">\r\n    <mat-toolbar color=\"primary\" class=\"topbar telative\">\r\n        <div class=\"navbar-header\">\r\n            <a class=\"navbar-brand\">\r\n                <!-- Logo icon -->\r\n                <b>\r\n                    <img src=\"assets/images/logo-icon.png\" alt=\"homepage\" class=\"dark-logo\">\r\n                    <img src=\"assets/images/c3.png\" alt=\"homepage\" class=\"light-logo\" style=\"width:40px;\">\r\n                </b>\r\n                <!--End Logo icon -->\r\n                <!-- Logo text -->\r\n                <span fxShow=\"false\" fxShow.gt-xs [style.display]=\"mobileQuery.matches ? 'block' : 'none'\">\r\n                    <img src=\"assets/images/logo-text.png\" alt=\"homepage\" class=\"dark-logo\">\r\n                    <img src=\"assets/images/logo-light-text.png\" class=\"light-logo\" alt=\"homepage\" style=\"width:160px;\">\r\n                </span> </a>\r\n        </div>\r\n\r\n        <button mat-icon-button (click)=\"snav.toggle()\" value=\"sidebarclosed\">\r\n            <mat-icon>menu</mat-icon>\r\n        </button>\r\n        <span fxFlex style=\"flex: 1 1 0%;box-sizing: border-box;\"></span>\r\n\r\n        <veh-topnav></veh-topnav>\r\n        <button mat-icon-button (click)=\"toggleFullscreen()\" [style.display]=\"mobileQuery.matches ? 'block' : 'none'\">\r\n                <mat-icon>{{(isFullScreen) ? 'fullscreen_exit' : 'fullscreen'}}</mat-icon>\r\n            </button>\r\n    </mat-toolbar>\r\n\r\n    <mat-sidenav-container class=\"example-sidenav-container\" [style.marginTop.px]=\"mobileQuery.matches ? 0 : 0\">\r\n        <mat-sidenav #snav id=\"snav\" class=\"dark-sidebar pl-xs\" [mode]=\"mobileQuery.matches ? 'side' : 'over'\"\r\n            fixedTopGap=\"0\" [opened]=\"mobileQuery.matches\" [disableClose]=\"mobileQuery.matches\">\r\n            <veh-sidebar></veh-sidebar>\r\n        </mat-sidenav>\r\n\r\n        <mat-sidenav-content class=\"page-wrapper\">\r\n            <div class=\"page-content\">\r\n                <router-outlet>\r\n                    <veh-spinner></veh-spinner>\r\n                </router-outlet>\r\n            </div>\r\n        </mat-sidenav-content>\r\n    </mat-sidenav-container>\r\n</div>"
 
 /***/ }),
 
@@ -1564,12 +1564,29 @@ var VehiclesEffectsService = /** @class */ (function () {
         this.store = store;
         this.itemActions = itemActions;
     }
+    VehiclesEffectsService.prototype.onUpdate = function () {
+        var _this = this;
+        return this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(this.itemActions.UPDATE_SUCCESS), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["withLatestFrom"])(this.store), Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["pipe"])(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (_a) {
+            var state = _a[1];
+            return _this.itemActions.createFilterAction({
+                client: state.vehicles.filter.client,
+                vin: state.vehicles.filter.vin,
+                status: state.vehicles.filter.status
+            });
+        })));
+    };
     VehiclesEffectsService.prototype.onFailed = function () {
         return this.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(this.itemActions.FAILED), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["mergeMap"])(function (action) {
             console.error(action.payload);
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(emptyAction);
         }));
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["Effect"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Function),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", []),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:returntype", void 0)
+    ], VehiclesEffectsService.prototype, "onUpdate", null);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["Effect"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Function),
@@ -1823,7 +1840,7 @@ var VehiclesFilterComponent = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["debounceTime"])(300), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) {
             return (value) ?
                 _this.clientsList.filter(function (v) {
-                    return v.name.toLowerCase().includes(value) &&
+                    return v.name.toLowerCase().includes(value.toLowerCase()) &&
                         !_this.selectedClients.includes(v.name);
                 }) :
                 _this.clientsList.filter(function (v) { return !_this.selectedClients.includes(v.name); });
@@ -1925,7 +1942,7 @@ module.exports = "<mat-card>\r\n  <mat-card-content>\r\n    <mat-card-title>{{ '
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\n  width: 100%; }\n\n.mat-form-field {\n  font-size: 14px;\n  width: 100%; }\n\n.mat-column-make {\n  white-space: nowrap; }\n\ntd,\nth {\n  width: 25%; }\n\n.s1 {\n  color: green; }\n\n.s2 {\n  color: red; }\n\n.s3 {\n  color: gray; }\n\n.s4 {\n  color: yellow; }\n\n.md-right {\n  position: absolute;\n  right: 30px;\n  margin: 0;\n  top: 20px; }\n\n.green-snackbar {\n  background: green; }\n\n.red-snackbar {\n  background-color: red; }\n\n.real-time-green {\n  color: green; }\n\n.real-time-red {\n  color: red; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdmVoaWNsZXMvY29tcG9uZW50cy92ZWhpY2xlcy1ncmlkL0U6XFxzYmFcXHByb2plY3RzXFxBbHRlblxcY2xpZW50XFx2ZWhpY2xlcy1tb25pdG9yL3NyY1xcYXBwXFx2ZWhpY2xlc1xcY29tcG9uZW50c1xcdmVoaWNsZXMtZ3JpZFxcdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGdCQUFlO0VBQ2YsWUFBVyxFQUNkOztBQUVEO0VBQ0ksb0JBQW1CLEVBQ3RCOztBQUNEOztFQUVJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLGFBQVksRUFDZjs7QUFFRDtFQUNJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGNBQWEsRUFDaEI7O0FBRUQ7RUFDSSxtQkFBa0I7RUFDbEIsWUFBVztFQUNYLFVBQVM7RUFDVCxVQUFTLEVBQ1o7O0FBRUQ7RUFDSSxrQkFBaUIsRUFDcEI7O0FBRUQ7RUFDSSxzQkFBcUIsRUFDeEI7O0FBRUQ7RUFDSSxhQUFZLEVBQ2Y7O0FBRUQ7RUFDSSxXQUFVLEVBQ2IiLCJmaWxlIjoic3JjL2FwcC92ZWhpY2xlcy9jb21wb25lbnRzL3ZlaGljbGVzLWdyaWQvdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInRhYmxlIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4ubWF0LWZvcm0tZmllbGQge1xyXG4gICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbi5tYXQtY29sdW1uLW1ha2Uge1xyXG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcclxufVxyXG50ZCxcclxudGgge1xyXG4gICAgd2lkdGg6IDI1JTtcclxufVxyXG5cclxuLnMxIHtcclxuICAgIGNvbG9yOiBncmVlbjtcclxufVxyXG5cclxuLnMyIHtcclxuICAgIGNvbG9yOiByZWQ7XHJcbn1cclxuXHJcbi5zMyB7XHJcbiAgICBjb2xvcjogZ3JheTtcclxufVxyXG5cclxuLnM0IHtcclxuICAgIGNvbG9yOiB5ZWxsb3c7XHJcbn1cclxuXHJcbi5tZC1yaWdodCB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICByaWdodDogMzBweDtcclxuICAgIG1hcmdpbjogMDtcclxuICAgIHRvcDogMjBweDtcclxufVxyXG5cclxuLmdyZWVuLXNuYWNrYmFyIHtcclxuICAgIGJhY2tncm91bmQ6IGdyZWVuO1xyXG59XHJcblxyXG4ucmVkLXNuYWNrYmFyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJlZDtcclxufVxyXG5cclxuLnJlYWwtdGltZS1ncmVlbiB7XHJcbiAgICBjb2xvcjogZ3JlZW47XHJcbn1cclxuXHJcbi5yZWFsLXRpbWUtcmVkIHtcclxuICAgIGNvbG9yOiByZWQ7XHJcbn0iXX0= */"
+module.exports = "table {\n  width: 100%; }\n\n.mat-form-field {\n  font-size: 14px;\n  width: 100%; }\n\n.mat-column-make {\n  white-space: nowrap; }\n\n.mat-column-client {\n  width: 150px; }\n\ntd,\nth {\n  width: 25%; }\n\n.s1 {\n  color: green; }\n\n.s2 {\n  color: red; }\n\n.s3 {\n  color: gray; }\n\n.s4 {\n  color: yellow; }\n\n.md-right {\n  position: absolute;\n  right: 30px;\n  margin: 0;\n  top: 20px; }\n\n.green-snackbar {\n  background: green; }\n\n.red-snackbar {\n  background-color: red; }\n\n.real-time-green {\n  color: green; }\n\n.real-time-red {\n  color: red; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdmVoaWNsZXMvY29tcG9uZW50cy92ZWhpY2xlcy1ncmlkL0U6XFxzYmFcXHByb2plY3RzXFxBbHRlblxcY2xpZW50XFx2ZWhpY2xlcy1tb25pdG9yL3NyY1xcYXBwXFx2ZWhpY2xlc1xcY29tcG9uZW50c1xcdmVoaWNsZXMtZ3JpZFxcdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGdCQUFlO0VBQ2YsWUFBVyxFQUNkOztBQUVEO0VBQ0ksb0JBQW1CLEVBQ3RCOztBQUNEO0VBQ0ksYUFBWSxFQUNmOztBQUNEOztFQUVJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLGFBQVksRUFDZjs7QUFFRDtFQUNJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGNBQWEsRUFDaEI7O0FBRUQ7RUFDSSxtQkFBa0I7RUFDbEIsWUFBVztFQUNYLFVBQVM7RUFDVCxVQUFTLEVBQ1o7O0FBRUQ7RUFDSSxrQkFBaUIsRUFDcEI7O0FBRUQ7RUFDSSxzQkFBcUIsRUFDeEI7O0FBRUQ7RUFDSSxhQUFZLEVBQ2Y7O0FBRUQ7RUFDSSxXQUFVLEVBQ2IiLCJmaWxlIjoic3JjL2FwcC92ZWhpY2xlcy9jb21wb25lbnRzL3ZlaGljbGVzLWdyaWQvdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInRhYmxlIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4ubWF0LWZvcm0tZmllbGQge1xyXG4gICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbi5tYXQtY29sdW1uLW1ha2Uge1xyXG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcclxufVxyXG4ubWF0LWNvbHVtbi1jbGllbnQge1xyXG4gICAgd2lkdGg6IDE1MHB4O1xyXG59XHJcbnRkLFxyXG50aCB7XHJcbiAgICB3aWR0aDogMjUlO1xyXG59XHJcblxyXG4uczEge1xyXG4gICAgY29sb3I6IGdyZWVuO1xyXG59XHJcblxyXG4uczIge1xyXG4gICAgY29sb3I6IHJlZDtcclxufVxyXG5cclxuLnMzIHtcclxuICAgIGNvbG9yOiBncmF5O1xyXG59XHJcblxyXG4uczQge1xyXG4gICAgY29sb3I6IHllbGxvdztcclxufVxyXG5cclxuLm1kLXJpZ2h0IHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHJpZ2h0OiAzMHB4O1xyXG4gICAgbWFyZ2luOiAwO1xyXG4gICAgdG9wOiAyMHB4O1xyXG59XHJcblxyXG4uZ3JlZW4tc25hY2tiYXIge1xyXG4gICAgYmFja2dyb3VuZDogZ3JlZW47XHJcbn1cclxuXHJcbi5yZWQtc25hY2tiYXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xyXG59XHJcblxyXG4ucmVhbC10aW1lLWdyZWVuIHtcclxuICAgIGNvbG9yOiBncmVlbjtcclxufVxyXG5cclxuLnJlYWwtdGltZS1yZWQge1xyXG4gICAgY29sb3I6IHJlZDtcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -2015,6 +2032,9 @@ var VehiclesGridComponent = /** @class */ (function () {
             duration: 2000,
             panelClass: [(isChecked) ? 'green-snackbar' : 'red-snackbar']
         });
+    };
+    VehiclesGridComponent.prototype.ngOnDestroy = function () {
+        this.mobileQuery.removeListener(this._mobileQueryListener);
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
