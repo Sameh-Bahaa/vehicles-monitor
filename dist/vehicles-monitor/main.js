@@ -8,6 +8,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./dashboard/dashboard.module": [
+		"./src/app/dashboard/dashboard.module.ts",
+		"dashboard-dashboard-module"
+	],
 	"./vehicles/vehicles.module": [
 		"./src/app/vehicles/vehicles.module.ts"
 	]
@@ -54,6 +58,10 @@ var routes = [
     {
         path: 'vehicles',
         loadChildren: './vehicles/vehicles.module#VehiclesModule'
+    },
+    {
+        path: 'dashboard',
+        loadChildren: './dashboard/dashboard.module#DashboardModule'
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -187,7 +195,6 @@ var AppModule = /** @class */ (function () {
                 //store
                 _store_store_module__WEBPACK_IMPORTED_MODULE_9__["VehiclesStoreModule"]
             ],
-            providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__["TranslateService"]])
@@ -480,7 +487,9 @@ var FirebaseService = /** @class */ (function () {
             storageBucket: "vehicles-monitor.appspot.com",
             messagingSenderId: "992146194138"
         };
-        firebase_app__WEBPACK_IMPORTED_MODULE_2__["initializeApp"](config);
+        if (!firebase_app__WEBPACK_IMPORTED_MODULE_2__["apps"].length) {
+            firebase_app__WEBPACK_IMPORTED_MODULE_2__["initializeApp"](config);
+        }
         this.db = firebase_app__WEBPACK_IMPORTED_MODULE_2__["database"]();
     }
     FirebaseService.prototype.getAllClients = function () {
@@ -555,14 +564,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/layout */ "./node_modules/@angular/cdk/esm5/layout.es5.js");
-/* harmony import */ var _shared_menu_items_menu_items__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../shared/menu-items/menu-items */ "./src/app/shared/menu-items/menu-items.ts");
-
 
 
 
 var SidebarComponent = /** @class */ (function () {
-    function SidebarComponent(changeDetectorRef, media, menuItems) {
-        this.menuItems = menuItems;
+    function SidebarComponent(changeDetectorRef, media) {
         this.mobileQuery = media.matchMedia('(min-width: 768px)');
         this._mobileQueryListener = function () { return changeDetectorRef.detectChanges(); };
         this.mobileQuery.addListener(this._mobileQueryListener);
@@ -577,8 +583,7 @@ var SidebarComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./sidebar.component.scss */ "./src/app/core/layout/components/sidebar/sidebar.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"],
-            _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_2__["MediaMatcher"],
-            _shared_menu_items_menu_items__WEBPACK_IMPORTED_MODULE_3__["MenuItems"]])
+            _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_2__["MediaMatcher"]])
     ], SidebarComponent);
     return SidebarComponent;
 }());
@@ -656,7 +661,7 @@ var SpinnerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"language\">\r\n    <mat-icon>language</mat-icon>\r\n</button>\r\n<mat-menu #language=\"matMenu\">\r\n    <button mat-menu-item (click)=\"changeLang('en')\">\r\n        <span>{{ 'layout.menu.language.en' | translate }}</span>\r\n    </button>\r\n    <button mat-menu-item (click)=\"changeLang('sv')\">\r\n        <span>{{ 'layout.menu.language.sv' | translate }}</span>\r\n    </button>\r\n</mat-menu>\r\n<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"profile\">\r\n    <mat-icon>account_circle</mat-icon>\r\n</button>\r\n<mat-menu #profile=\"matMenu\" class=\"mymegamenu\">\r\n\r\n    <button mat-menu-item>\r\n        <mat-icon>settings</mat-icon>\r\n        {{ 'layout.menu.settings' | translate }}\r\n    </button>\r\n    <button mat-menu-item>\r\n        <mat-icon>exit_to_app</mat-icon>\r\n        {{ 'layout.menu.sign-out' | translate }}\r\n    </button>\r\n</mat-menu>\r\n\r\n<button class=\"hidden-sm\" mat-icon-button (click)=\"toggleFullscreen()\">\r\n    <mat-icon>{{(isFullScreen) ? 'fullscreen_exit' : 'fullscreen'}}</mat-icon>\r\n</button>"
+module.exports = "<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"language\">\r\n    <mat-icon>language</mat-icon>\r\n</button>\r\n<mat-menu #language=\"matMenu\">\r\n    <button mat-menu-item (click)=\"changeLang('en')\">\r\n        <span>{{ 'layout.menu.language.en' | translate }}</span>\r\n    </button>\r\n    <button mat-menu-item (click)=\"changeLang('sv')\">\r\n        <span>{{ 'layout.menu.language.sv' | translate }}</span>\r\n    </button>\r\n</mat-menu>\r\n<button class=\"hidden-sm\" mat-icon-button [matMenuTriggerFor]=\"profile\">\r\n    <mat-icon>account_circle</mat-icon>\r\n</button>\r\n<mat-menu #profile=\"matMenu\" class=\"mymegamenu\">\r\n\r\n    <button mat-menu-item>\r\n        <mat-icon>settings</mat-icon>\r\n        {{ 'layout.menu.settings' | translate }}\r\n    </button>\r\n    <button mat-menu-item>\r\n        <mat-icon>exit_to_app</mat-icon>\r\n        {{ 'layout.menu.sign-out' | translate }}\r\n    </button>\r\n</mat-menu>"
 
 /***/ }),
 
@@ -684,64 +689,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm5/ngx-translate-core.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-
 
 
 
 var TopnavComponent = /** @class */ (function () {
-    function TopnavComponent(translate, document) {
+    function TopnavComponent(translate) {
         this.translate = translate;
-        this.document = document;
     }
     TopnavComponent.prototype.changeLang = function (lang) {
         this.translate.use(lang);
-    };
-    TopnavComponent.prototype.ngOnInit = function () {
-        this.elem = document.documentElement;
-        this.isFullScreen = false;
-    };
-    TopnavComponent.prototype.toggleFullscreen = function () {
-        if (this.isFullScreen)
-            this.closeFullscreen();
-        else
-            this.openFullscreen();
-        this.isFullScreen = !this.isFullScreen;
-    };
-    TopnavComponent.prototype.openFullscreen = function () {
-        if (this.elem.requestFullscreen) {
-            this.elem.requestFullscreen();
-        }
-        else if (this.elem.mozRequestFullScreen) {
-            /* Firefox */
-            this.elem.mozRequestFullScreen();
-        }
-        else if (this.elem.webkitRequestFullscreen) {
-            /* Chrome, Safari and Opera */
-            this.elem.webkitRequestFullscreen();
-        }
-        else if (this.elem.msRequestFullscreen) {
-            /* IE/Edge */
-            this.elem.msRequestFullscreen();
-        }
-    };
-    /* Close fullscreen */
-    TopnavComponent.prototype.closeFullscreen = function () {
-        if (this.document.exitFullscreen) {
-            this.document.exitFullscreen();
-        }
-        else if (this.document.mozCancelFullScreen) {
-            /* Firefox */
-            this.document.mozCancelFullScreen();
-        }
-        else if (this.document.webkitExitFullscreen) {
-            /* Chrome, Safari and Opera */
-            this.document.webkitExitFullscreen();
-        }
-        else if (this.document.msExitFullscreen) {
-            /* IE/Edge */
-            this.document.msExitFullscreen();
-        }
     };
     TopnavComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -749,8 +705,7 @@ var TopnavComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./topnav.component.html */ "./src/app/core/layout/components/topnav/topnav.component.html"),
             styles: [__webpack_require__(/*! ./topnav.component.scss */ "./src/app/core/layout/components/topnav/topnav.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"])),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__["TranslateService"], Object])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__["TranslateService"]])
     ], TopnavComponent);
     return TopnavComponent;
 }());
@@ -859,7 +814,7 @@ var LayoutModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-container\">\r\n    <mat-toolbar color=\"primary\" class=\"topbar telative\">\r\n        <div class=\"navbar-header\">\r\n            <a class=\"navbar-brand\" href=\"index.html\">\r\n                <!-- Logo icon -->\r\n                <b>\r\n                    <img src=\"assets/images/logo-icon.png\" alt=\"homepage\" class=\"dark-logo\">\r\n                    <img src=\"assets/images/c3.png\" alt=\"homepage\" class=\"light-logo\" style=\"width:40px;\">\r\n                </b>\r\n                <!--End Logo icon -->\r\n                <!-- Logo text -->\r\n                <span fxShow=\"false\" fxShow.gt-xs>\r\n                    <img src=\"assets/images/logo-text.png\" alt=\"homepage\" class=\"dark-logo\">\r\n                    <img src=\"assets/images/logo-light-text.png\" class=\"light-logo\" alt=\"homepage\" style=\"width:160px;\">\r\n                </span> </a>\r\n        </div>\r\n\r\n        <button mat-icon-button (click)=\"snav.toggle()\" value=\"sidebarclosed\">\r\n            <mat-icon>menu</mat-icon>\r\n        </button>\r\n        <span fxFlex style=\"flex: 1 1 0%;box-sizing: border-box;\"></span>\r\n\r\n        <veh-topnav></veh-topnav>\r\n    </mat-toolbar>\r\n\r\n    <mat-sidenav-container class=\"example-sidenav-container\" [style.marginTop.px]=\"mobileQuery.matches ? 0 : 0\">\r\n        <mat-sidenav #snav id=\"snav\" class=\"dark-sidebar pl-xs\" [mode]=\"mobileQuery.matches ? 'side' : 'over'\"\r\n            fixedTopGap=\"0\" [opened]=\"mobileQuery.matches\" [disableClose]=\"mobileQuery.matches\">\r\n            <veh-sidebar></veh-sidebar>\r\n        </mat-sidenav>\r\n\r\n        <mat-sidenav-content class=\"page-wrapper\">\r\n            <div class=\"page-content\">\r\n                <router-outlet>\r\n                    <veh-spinner></veh-spinner>\r\n                </router-outlet>\r\n            </div>\r\n        </mat-sidenav-content>\r\n    </mat-sidenav-container>\r\n</div>"
+module.exports = "<div class=\"main-container\">\r\n    <mat-toolbar color=\"primary\" class=\"topbar telative\">\r\n        <div class=\"navbar-header\">\r\n            <a class=\"navbar-brand\" [style.display]=\"mobileQuery.matches ? 'block' : 'none'\">\r\n                <!-- Logo icon -->\r\n                <b>\r\n                    <img src=\"assets/images/logo-icon.png\" alt=\"homepage\" class=\"dark-logo\">\r\n                    <img src=\"assets/images/c3.png\" alt=\"homepage\" class=\"light-logo\" style=\"width:40px;\">\r\n                </b>\r\n                <!--End Logo icon -->\r\n                <!-- Logo text -->\r\n                <span fxShow=\"false\" fxShow.gt-xs>\r\n                    <img src=\"assets/images/logo-text.png\" alt=\"homepage\" class=\"dark-logo\">\r\n                    <img src=\"assets/images/logo-light-text.png\" class=\"light-logo\" alt=\"homepage\" style=\"width:160px;\">\r\n                </span> </a>\r\n        </div>\r\n\r\n        <button mat-icon-button (click)=\"snav.toggle()\" value=\"sidebarclosed\">\r\n            <mat-icon>menu</mat-icon>\r\n        </button>\r\n        <span fxFlex style=\"flex: 1 1 0%;box-sizing: border-box;\"></span>\r\n\r\n        <veh-topnav></veh-topnav>\r\n        <button mat-icon-button (click)=\"toggleFullscreen()\" [style.display]=\"mobileQuery.matches ? 'block' : 'none'\">\r\n                <mat-icon>{{(isFullScreen) ? 'fullscreen_exit' : 'fullscreen'}}</mat-icon>\r\n            </button>\r\n    </mat-toolbar>\r\n\r\n    <mat-sidenav-container class=\"example-sidenav-container\" [style.marginTop.px]=\"mobileQuery.matches ? 0 : 0\">\r\n        <mat-sidenav #snav id=\"snav\" class=\"dark-sidebar pl-xs\" [mode]=\"mobileQuery.matches ? 'side' : 'over'\"\r\n            fixedTopGap=\"0\" [opened]=\"mobileQuery.matches\" [disableClose]=\"mobileQuery.matches\">\r\n            <veh-sidebar></veh-sidebar>\r\n        </mat-sidenav>\r\n\r\n        <mat-sidenav-content class=\"page-wrapper\">\r\n            <div class=\"page-content\">\r\n                <router-outlet>\r\n                    <veh-spinner></veh-spinner>\r\n                </router-outlet>\r\n            </div>\r\n        </mat-sidenav-content>\r\n    </mat-sidenav-container>\r\n</div>"
 
 /***/ }),
 
@@ -887,31 +842,77 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/layout */ "./node_modules/@angular/cdk/esm5/layout.es5.js");
-/* harmony import */ var src_app_shared_menu_items_menu_items__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/menu-items/menu-items */ "./src/app/shared/menu-items/menu-items.ts");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 
 
 
 
 var LayoutPageComponent = /** @class */ (function () {
-    function LayoutPageComponent(changeDetectorRef, media, menuItems) {
-        this.menuItems = menuItems;
+    function LayoutPageComponent(changeDetectorRef, media, document) {
+        this.document = document;
         this.mobileQuery = media.matchMedia('(min-width: 768px)');
         this._mobileQueryListener = function () { return changeDetectorRef.detectChanges(); };
         this.mobileQuery.addListener(this._mobileQueryListener);
     }
+    LayoutPageComponent.prototype.ngOnInit = function () {
+        this.elem = document.documentElement;
+        this.isFullScreen = false;
+    };
     LayoutPageComponent.prototype.ngOnDestroy = function () {
         this.mobileQuery.removeListener(this._mobileQueryListener);
     };
     LayoutPageComponent.prototype.ngAfterViewInit = function () { };
+    LayoutPageComponent.prototype.toggleFullscreen = function () {
+        if (this.isFullScreen)
+            this.closeFullscreen();
+        else
+            this.openFullscreen();
+        this.isFullScreen = !this.isFullScreen;
+    };
+    LayoutPageComponent.prototype.openFullscreen = function () {
+        if (this.elem.requestFullscreen) {
+            this.elem.requestFullscreen();
+        }
+        else if (this.elem.mozRequestFullScreen) {
+            /* Firefox */
+            this.elem.mozRequestFullScreen();
+        }
+        else if (this.elem.webkitRequestFullscreen) {
+            /* Chrome, Safari and Opera */
+            this.elem.webkitRequestFullscreen();
+        }
+        else if (this.elem.msRequestFullscreen) {
+            /* IE/Edge */
+            this.elem.msRequestFullscreen();
+        }
+    };
+    /* Close fullscreen */
+    LayoutPageComponent.prototype.closeFullscreen = function () {
+        if (this.document.exitFullscreen) {
+            this.document.exitFullscreen();
+        }
+        else if (this.document.mozCancelFullScreen) {
+            /* Firefox */
+            this.document.mozCancelFullScreen();
+        }
+        else if (this.document.webkitExitFullscreen) {
+            /* Chrome, Safari and Opera */
+            this.document.webkitExitFullscreen();
+        }
+        else if (this.document.msExitFullscreen) {
+            /* IE/Edge */
+            this.document.msExitFullscreen();
+        }
+    };
     LayoutPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'veh-layout-page',
             template: __webpack_require__(/*! ./layout-page.component.html */ "./src/app/core/layout/pages/layout-page/layout-page.component.html"),
             styles: [__webpack_require__(/*! ./layout-page.component.scss */ "./src/app/core/layout/pages/layout-page/layout-page.component.scss")]
         }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"])),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"],
-            _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_2__["MediaMatcher"],
-            src_app_shared_menu_items_menu_items__WEBPACK_IMPORTED_MODULE_3__["MenuItems"]])
+            _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_2__["MediaMatcher"], Object])
     ], LayoutPageComponent);
     return LayoutPageComponent;
 }());
@@ -1079,40 +1080,6 @@ var MaterialModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/shared/menu-items/menu-items.ts":
-/*!*************************************************!*\
-  !*** ./src/app/shared/menu-items/menu-items.ts ***!
-  \*************************************************/
-/*! exports provided: MenuItems */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuItems", function() { return MenuItems; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-var MENUITEMS = [
-    { state: 'starter', type: 'link', name: 'Dashboard', icon: 'av_timer' },
-    { state: 'vehicles', type: 'link', name: 'Vehicles List', icon: 'local_car_wash' }
-];
-var MenuItems = /** @class */ (function () {
-    function MenuItems() {
-    }
-    MenuItems.prototype.getMenuitem = function () {
-        return MENUITEMS;
-    };
-    MenuItems = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
-    ], MenuItems);
-    return MenuItems;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/shared/shared-routing.module.ts":
 /*!*************************************************!*\
   !*** ./src/app/shared/shared-routing.module.ts ***!
@@ -1162,11 +1129,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _shared_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared-routing.module */ "./src/app/shared/shared-routing.module.ts");
 /* harmony import */ var _material_material_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./material/material.module */ "./src/app/shared/material/material.module.ts");
-/* harmony import */ var _menu_items_menu_items__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./menu-items/menu-items */ "./src/app/shared/menu-items/menu-items.ts");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm5/ngx-translate-core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/http-loader */ "./node_modules/@ngx-translate/http-loader/fesm5/ngx-translate-http-loader.js");
-
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm5/ngx-translate-core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngx-translate/http-loader */ "./node_modules/@ngx-translate/http-loader/fesm5/ngx-translate-http-loader.js");
 
 
 
@@ -1185,27 +1150,26 @@ var SharedModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _shared_routing_module__WEBPACK_IMPORTED_MODULE_3__["SharedRoutingModule"],
                 _material_material_module__WEBPACK_IMPORTED_MODULE_4__["MaterialModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"],
-                _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateModule"].forRoot({
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
+                _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateModule"].forRoot({
                     loader: {
-                        provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateLoader"],
+                        provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateLoader"],
                         useFactory: HttpLoaderFactory,
-                        deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]]
+                        deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"]]
                     }
                 })
             ],
             exports: [
                 _material_material_module__WEBPACK_IMPORTED_MODULE_4__["MaterialModule"],
-                _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateModule"]
-            ],
-            providers: [_menu_items_menu_items__WEBPACK_IMPORTED_MODULE_5__["MenuItems"]]
+                _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateModule"]
+            ]
         })
     ], SharedModule);
     return SharedModule;
 }());
 
 function HttpLoaderFactory(http) {
-    return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_8__["TranslateHttpLoader"](http, "/assets/i18n/", '.json');
+    return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_7__["TranslateHttpLoader"](http, "/assets/i18n/", '.json');
 }
 
 
@@ -1781,7 +1745,7 @@ module.exports = "<form [formGroup]='filterForm'>\r\n  <mat-card>\r\n    <mat-ca
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-section {\n  display: flex;\n  align-content: center;\n  align-items: center;\n  height: 60px; }\n\n.example-margin {\n  margin: 10px; }\n\n.mr-6 {\n  margin-right: 6px; }\n\n.mat-standard-chip {\n  background-color: #26c6da;\n  color: white; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdmVoaWNsZXMvY29tcG9uZW50cy92ZWhpY2xlcy1maWx0ZXIvRTpcXHNiYVxccHJvamVjdHNcXEFsdGVuXFxjbGllbnRcXHZlaGljbGVzLW1vbml0b3Ivc3JjXFxhcHBcXHZlaGljbGVzXFxjb21wb25lbnRzXFx2ZWhpY2xlcy1maWx0ZXJcXHZlaGljbGVzLWZpbHRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLGNBQWE7RUFDYixzQkFBcUI7RUFDckIsb0JBQW1CO0VBQ25CLGFBQVksRUFDZjs7QUFFRDtFQUNJLGFBQVksRUFDZjs7QUFFRDtFQUNJLGtCQUFpQixFQUNwQjs7QUFFRDtFQUNJLDBCQUF5QjtFQUN6QixhQUFZLEVBQ2YiLCJmaWxlIjoic3JjL2FwcC92ZWhpY2xlcy9jb21wb25lbnRzL3ZlaGljbGVzLWZpbHRlci92ZWhpY2xlcy1maWx0ZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLmV4YW1wbGUtc2VjdGlvbiB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgYWxpZ24tY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGhlaWdodDogNjBweDtcclxufVxyXG5cclxuLmV4YW1wbGUtbWFyZ2luIHtcclxuICAgIG1hcmdpbjogMTBweDtcclxufVxyXG5cclxuLm1yLTYge1xyXG4gICAgbWFyZ2luLXJpZ2h0OiA2cHg7XHJcbn1cclxuXHJcbi5tYXQtc3RhbmRhcmQtY2hpcHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMyNmM2ZGE7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbn0iXX0= */"
+module.exports = ".example-section {\n  display: flex;\n  align-content: center;\n  align-items: center;\n  flex-wrap: wrap; }\n\n.example-margin {\n  margin: 10px;\n  flex: 1 0 21%; }\n\n.mr-6 {\n  margin-right: 6px; }\n\n.mat-standard-chip {\n  background-color: #26c6da;\n  color: white; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdmVoaWNsZXMvY29tcG9uZW50cy92ZWhpY2xlcy1maWx0ZXIvRTpcXHNiYVxccHJvamVjdHNcXEFsdGVuXFxjbGllbnRcXHZlaGljbGVzLW1vbml0b3Ivc3JjXFxhcHBcXHZlaGljbGVzXFxjb21wb25lbnRzXFx2ZWhpY2xlcy1maWx0ZXJcXHZlaGljbGVzLWZpbHRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGNBQWE7RUFDYixzQkFBcUI7RUFDckIsb0JBQW1CO0VBRW5CLGdCQUFlLEVBQ2xCOztBQUVEO0VBQ0ksYUFBWTtFQUNaLGNBQWEsRUFDaEI7O0FBRUQ7RUFDSSxrQkFBaUIsRUFDcEI7O0FBRUQ7RUFDSSwwQkFBeUI7RUFDekIsYUFBWSxFQUNmIiwiZmlsZSI6InNyYy9hcHAvdmVoaWNsZXMvY29tcG9uZW50cy92ZWhpY2xlcy1maWx0ZXIvdmVoaWNsZXMtZmlsdGVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmV4YW1wbGUtc2VjdGlvbiB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgYWxpZ24tY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjsgXHJcbiAgICAvLyBoZWlnaHQ6IDYwcHg7XHJcbiAgICBmbGV4LXdyYXA6IHdyYXA7XHJcbn1cclxuXHJcbi5leGFtcGxlLW1hcmdpbiB7XHJcbiAgICBtYXJnaW46IDEwcHg7XHJcbiAgICBmbGV4OiAxIDAgMjElO1xyXG59XHJcblxyXG4ubXItNiB7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDZweDtcclxufVxyXG5cclxuLm1hdC1zdGFuZGFyZC1jaGlwIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMyNmM2ZGE7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -1950,7 +1914,7 @@ var VehiclesFilterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card>\r\n  <mat-card-content>\r\n    <mat-card-title>{{ 'vehicles-list.grid.title' | translate }}</mat-card-title>\r\n    <mat-card-subtitle>\r\n      <mat-slide-toggle [color]=\"Primary\" (change)=\"onChangeRealTime($event.checked)\" class=\"md-right\">\r\n        <code [class]=\"realTimeClass\">{{ 'vehicles-list.grid.sub-title' | translate }}</code>\r\n      </mat-slide-toggle>\r\n    </mat-card-subtitle>\r\n    <!-- Row -->\r\n\r\n    <div fxLayout=\"row\" fxLayoutWrap=\"wrap\">\r\n      <!-- column -->\r\n      <div fxFlex.gt-sm=\"50\" fxFlex.gt-xs=\"50\">\r\n        <div class=\"mat-elevation-z2\">\r\n          <table mat-table [dataSource]=\"dataSource\" matSort>\r\n            <ng-container matColumnDef=\"vin\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> VIN </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.vin}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"client\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.client' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.clientName}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"make\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.make' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.make}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"regNum\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.register' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.regNum}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"status\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.status' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\" [style.color]=\"row.statusColor\">\r\n                {{ 'vehicles-list.filter.filter-placeholder.' + row.statusName | translate }}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n            <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n          </table>\r\n\r\n          <mat-paginator [pageSize]=\"10\" [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\r\n        </div>\r\n\r\n      </div>\r\n    </div>\r\n  </mat-card-content>\r\n</mat-card>"
+module.exports = "<mat-card>\r\n  <mat-card-content>\r\n    <mat-card-title>{{ 'vehicles-list.grid.title' | translate }}</mat-card-title>\r\n        <mat-card-subtitle [class]=\"_isMobile ? '' : 'md-right'\">\r\n            <mat-slide-toggle [color]=\"Primary\" (change)=\"onChangeRealTime($event.checked)\">\r\n                <code [class]=\"realTimeClass\">{{ 'vehicles-list.grid.sub-title' | translate }}</code>\r\n              </mat-slide-toggle>  \r\n        </mat-card-subtitle>\r\n    <!-- Row -->\r\n\r\n    <div fxLayout=\"row\" fxLayoutWrap=\"wrap\">\r\n      <!-- column -->\r\n      <div fxFlex.gt-sm=\"50\" fxFlex.gt-xs=\"50\">\r\n        <div class=\"mat-elevation-z2\">\r\n          <table mat-table [dataSource]=\"dataSource\" matSort>\r\n            <ng-container matColumnDef=\"vin\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> VIN </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.vin}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"client\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.client' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.clientName}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"make\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.make' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.make}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"regNum\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.register' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\">\r\n                {{row.regNum}}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <ng-container matColumnDef=\"status\">\r\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'vehicles-list.grid.status' | translate }} </th>\r\n              <td mat-cell *matCellDef=\"let row\" [style.color]=\"row.statusColor\">\r\n                {{ 'vehicles-list.filter.filter-placeholder.' + row.statusName | translate }}\r\n              </td>\r\n            </ng-container>\r\n\r\n            <tr mat-header-row *matHeaderRowDef=\"getDisplayedColumns()\"></tr>\r\n            <tr mat-row *matRowDef=\"let row; columns: getDisplayedColumns()\"></tr>\r\n          </table>\r\n\r\n          <mat-paginator [pageSize]=\"10\" [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\r\n        </div>\r\n\r\n      </div>\r\n    </div>\r\n  </mat-card-content>\r\n</mat-card>"
 
 /***/ }),
 
@@ -1961,7 +1925,7 @@ module.exports = "<mat-card>\r\n  <mat-card-content>\r\n    <mat-card-title>{{ '
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "table {\n  width: 100%; }\n\n.mat-form-field {\n  font-size: 14px;\n  width: 100%; }\n\n.mat-column-make {\n  white-space: nowrap; }\n\ntd,\nth {\n  width: 25%; }\n\n.s1 {\n  color: green; }\n\n.s2 {\n  color: red; }\n\n.s3 {\n  color: gray; }\n\n.s4 {\n  color: yellow; }\n\n.md-right {\n  position: absolute;\n  right: 30px;\n  margin: 0;\n  top: 20px; }\n\n.green-snackbar {\n  background: green; }\n\n.red-snackbar {\n  background-color: red; }\n\n.real-time-green {\n  color: green; }\n\n.real-time-red {\n  color: red; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdmVoaWNsZXMvY29tcG9uZW50cy92ZWhpY2xlcy1ncmlkL0U6XFxzYmFcXHByb2plY3RzXFxBbHRlblxcY2xpZW50XFx2ZWhpY2xlcy1tb25pdG9yL3NyY1xcYXBwXFx2ZWhpY2xlc1xcY29tcG9uZW50c1xcdmVoaWNsZXMtZ3JpZFxcdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGdCQUFlO0VBQ2YsWUFBVyxFQUNkOztBQUNEO0VBQ0ksb0JBQW1CLEVBQ3BCOztBQUNIOztFQUVJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLGFBQVksRUFDZjs7QUFFRDtFQUNJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGNBQWEsRUFDaEI7O0FBRUQ7RUFDSSxtQkFBa0I7RUFDbEIsWUFBVztFQUNYLFVBQVM7RUFDVCxVQUFTLEVBQ1o7O0FBRUQ7RUFDSSxrQkFBaUIsRUFDcEI7O0FBRUQ7RUFDSSxzQkFBcUIsRUFDeEI7O0FBRUQ7RUFDSSxhQUFZLEVBQ2Y7O0FBRUQ7RUFDSSxXQUFVLEVBQ2IiLCJmaWxlIjoic3JjL2FwcC92ZWhpY2xlcy9jb21wb25lbnRzL3ZlaGljbGVzLWdyaWQvdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInRhYmxlIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4ubWF0LWZvcm0tZmllbGQge1xyXG4gICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuLm1hdC1jb2x1bW4tbWFrZSB7XHJcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xyXG4gIH1cclxudGQsXHJcbnRoIHtcclxuICAgIHdpZHRoOiAyNSU7XHJcbn1cclxuXHJcbi5zMXtcclxuICAgIGNvbG9yOiBncmVlbjtcclxufVxyXG5cclxuLnMye1xyXG4gICAgY29sb3I6IHJlZDtcclxufVxyXG5cclxuLnMze1xyXG4gICAgY29sb3I6IGdyYXk7XHJcbn1cclxuXHJcbi5zNHtcclxuICAgIGNvbG9yOiB5ZWxsb3c7XHJcbn1cclxuXHJcbi5tZC1yaWdodHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHJpZ2h0OiAzMHB4O1xyXG4gICAgbWFyZ2luOiAwO1xyXG4gICAgdG9wOiAyMHB4O1xyXG59XHJcblxyXG4uZ3JlZW4tc25hY2tiYXIge1xyXG4gICAgYmFja2dyb3VuZDogZ3JlZW47XHJcbn1cclxuXHJcbi5yZWQtc25hY2tiYXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xyXG59XHJcblxyXG4ucmVhbC10aW1lLWdyZWVuIHtcclxuICAgIGNvbG9yOiBncmVlbjtcclxufVxyXG5cclxuLnJlYWwtdGltZS1yZWQge1xyXG4gICAgY29sb3I6IHJlZDtcclxufSJdfQ== */"
+module.exports = "table {\n  width: 100%; }\n\n.mat-form-field {\n  font-size: 14px;\n  width: 100%; }\n\n.mat-column-make {\n  white-space: nowrap; }\n\ntd,\nth {\n  width: 25%; }\n\n.s1 {\n  color: green; }\n\n.s2 {\n  color: red; }\n\n.s3 {\n  color: gray; }\n\n.s4 {\n  color: yellow; }\n\n.md-right {\n  position: absolute;\n  right: 30px;\n  margin: 0;\n  top: 20px; }\n\n.green-snackbar {\n  background: green; }\n\n.red-snackbar {\n  background-color: red; }\n\n.real-time-green {\n  color: green; }\n\n.real-time-red {\n  color: red; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdmVoaWNsZXMvY29tcG9uZW50cy92ZWhpY2xlcy1ncmlkL0U6XFxzYmFcXHByb2plY3RzXFxBbHRlblxcY2xpZW50XFx2ZWhpY2xlcy1tb25pdG9yL3NyY1xcYXBwXFx2ZWhpY2xlc1xcY29tcG9uZW50c1xcdmVoaWNsZXMtZ3JpZFxcdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGdCQUFlO0VBQ2YsWUFBVyxFQUNkOztBQUVEO0VBQ0ksb0JBQW1CLEVBQ3RCOztBQUNEOztFQUVJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLGFBQVksRUFDZjs7QUFFRDtFQUNJLFdBQVUsRUFDYjs7QUFFRDtFQUNJLFlBQVcsRUFDZDs7QUFFRDtFQUNJLGNBQWEsRUFDaEI7O0FBRUQ7RUFDSSxtQkFBa0I7RUFDbEIsWUFBVztFQUNYLFVBQVM7RUFDVCxVQUFTLEVBQ1o7O0FBRUQ7RUFDSSxrQkFBaUIsRUFDcEI7O0FBRUQ7RUFDSSxzQkFBcUIsRUFDeEI7O0FBRUQ7RUFDSSxhQUFZLEVBQ2Y7O0FBRUQ7RUFDSSxXQUFVLEVBQ2IiLCJmaWxlIjoic3JjL2FwcC92ZWhpY2xlcy9jb21wb25lbnRzL3ZlaGljbGVzLWdyaWQvdmVoaWNsZXMtZ3JpZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInRhYmxlIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4ubWF0LWZvcm0tZmllbGQge1xyXG4gICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbi5tYXQtY29sdW1uLW1ha2Uge1xyXG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcclxufVxyXG50ZCxcclxudGgge1xyXG4gICAgd2lkdGg6IDI1JTtcclxufVxyXG5cclxuLnMxIHtcclxuICAgIGNvbG9yOiBncmVlbjtcclxufVxyXG5cclxuLnMyIHtcclxuICAgIGNvbG9yOiByZWQ7XHJcbn1cclxuXHJcbi5zMyB7XHJcbiAgICBjb2xvcjogZ3JheTtcclxufVxyXG5cclxuLnM0IHtcclxuICAgIGNvbG9yOiB5ZWxsb3c7XHJcbn1cclxuXHJcbi5tZC1yaWdodCB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICByaWdodDogMzBweDtcclxuICAgIG1hcmdpbjogMDtcclxuICAgIHRvcDogMjBweDtcclxufVxyXG5cclxuLmdyZWVuLXNuYWNrYmFyIHtcclxuICAgIGJhY2tncm91bmQ6IGdyZWVuO1xyXG59XHJcblxyXG4ucmVkLXNuYWNrYmFyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJlZDtcclxufVxyXG5cclxuLnJlYWwtdGltZS1ncmVlbiB7XHJcbiAgICBjb2xvcjogZ3JlZW47XHJcbn1cclxuXHJcbi5yZWFsLXRpbWUtcmVkIHtcclxuICAgIGNvbG9yOiByZWQ7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -1978,14 +1942,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/cdk/layout */ "./node_modules/@angular/cdk/esm5/layout.es5.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+
+
 
 
 
 var VehiclesGridComponent = /** @class */ (function () {
-    function VehiclesGridComponent(snackBar) {
+    function VehiclesGridComponent(snackBar, changeDetectorRef, media, document) {
+        var _this = this;
         this.snackBar = snackBar;
-        this.displayedColumns = ['vin', 'status', 'client', 'regNum', 'make'];
+        this.document = document;
+        this.displayedColumns = [
+            { def: 'vin', showMobile: false },
+            { def: 'client', showMobile: true },
+            { def: 'status', showMobile: true },
+            { def: 'regNum', showMobile: false },
+        ];
+        this._isMobile = false;
         this.isRealTime = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.mobileQuery = media.matchMedia('(min-width: 768px)');
+        this._mobileQueryListener = function () {
+            changeDetectorRef.detectChanges();
+            _this._isMobile = !_this.mobileQuery.matches;
+        };
+        this.mobileQuery.addListener(this._mobileQueryListener);
     }
     Object.defineProperty(VehiclesGridComponent.prototype, "clients", {
         set: function (data) {
@@ -2012,6 +1994,14 @@ var VehiclesGridComponent = /** @class */ (function () {
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         }
+    };
+    VehiclesGridComponent.prototype.getDisplayedColumns = function () {
+        var _this = this;
+        this._isMobile = !this.mobileQuery.matches;
+        var result = this.displayedColumns
+            .filter(function (cd) { return !_this._isMobile || cd.showMobile; })
+            .map(function (cd) { return cd.def; });
+        return result;
     };
     VehiclesGridComponent.prototype.mapper = function (item) {
         var clientFiltered = this._clients.find(function (c) { return c.id == item.client; });
@@ -2059,7 +2049,9 @@ var VehiclesGridComponent = /** @class */ (function () {
             changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectionStrategy"].OnPush,
             styles: [__webpack_require__(/*! ./vehicles-grid.component.scss */ "./src/app/vehicles/components/vehicles-grid/vehicles-grid.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["DOCUMENT"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"],
+            _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["MediaMatcher"], Object])
     ], VehiclesGridComponent);
     return VehiclesGridComponent;
 }());
