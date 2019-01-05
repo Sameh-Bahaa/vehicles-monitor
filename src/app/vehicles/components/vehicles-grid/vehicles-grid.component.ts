@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges, SimpleChanges, SimpleChange, ChangeDetectorRef, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges, SimpleChanges, SimpleChange, ChangeDetectorRef, Inject, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
@@ -13,7 +13,7 @@ import { DOCUMENT } from '@angular/platform-browser';
   styleUrls: ['./vehicles-grid.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VehiclesGridComponent implements OnChanges {
+export class VehiclesGridComponent implements OnChanges, OnDestroy {
   private dataSource: MatTableDataSource<vehicleDto>;
   private realTimeClass: string;
   private mobileQuery: MediaQueryList;
@@ -92,5 +92,9 @@ export class VehiclesGridComponent implements OnChanges {
       duration: 2000,
       panelClass: [(isChecked) ? 'green-snackbar' : 'red-snackbar']
     });
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 }
