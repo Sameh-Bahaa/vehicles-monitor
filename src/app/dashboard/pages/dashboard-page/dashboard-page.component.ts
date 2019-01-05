@@ -10,7 +10,6 @@ export class DashboardPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('ana page')
   }
 
 }

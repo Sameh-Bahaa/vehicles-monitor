@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges, SimpleChanges, SimpleChange, ChangeDetectorRef, Inject } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { vehicleDto } from 'src/app/shared/DTOs/vehicles';
 import { clientDTO } from 'src/app/shared/DTOs/client';
 import { statusDTO } from 'src/app/shared/DTOs/status';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'veh-vehicles-grid',
@@ -12,14 +14,25 @@ import { statusDTO } from 'src/app/shared/DTOs/status';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VehiclesGridComponent implements OnChanges {
-  private displayedColumns = ['vin', 'status', 'client', 'regNum', 'make'];
   private dataSource: MatTableDataSource<vehicleDto>;
   private realTimeClass: string;
+  private mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+  private elem: any;
+  public displayedColumns = [
+    { def: 'vin', showMobile: false }, 
+    { def: 'client', showMobile: true }, 
+    { def: 'status', showMobile: true }, 
+    { def: 'regNum', showMobile: false }, 
+  //  { def: 'make', showMobile: false }
+  ];
+  _clients: clientDTO[];
+  _status: statusDTO[];
+  _isMobile: boolean = false;
+
   @Output() isRealTime = new EventEmitter<boolean>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  _clients: clientDTO[];
-  _status: statusDTO[];
   @Input() set clients(data: any) {
     if (data)
       this._clients = data.val().slice(1);
@@ -30,6 +43,18 @@ export class VehiclesGridComponent implements OnChanges {
   }
   @Input() items: vehicleDto[];
 
+  constructor(private snackBar: MatSnackBar, changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    @Inject(DOCUMENT) private document: any) {
+    this.mobileQuery = media.matchMedia('(min-width: 768px)');
+    this._mobileQueryListener = () => {
+      changeDetectorRef.detectChanges()
+      this._isMobile = !this.mobileQuery.matches;
+    }
+
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (this._clients && this._status && this.items) {
       let result = this.items.map(v => this.mapper(v));
@@ -38,6 +63,14 @@ export class VehiclesGridComponent implements OnChanges {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
+  }
+
+  getDisplayedColumns(): string[] {
+    this._isMobile = !this.mobileQuery.matches;
+    let result = this.displayedColumns
+      .filter(cd => !this._isMobile || cd.showMobile)
+      .map(cd => cd.def);
+    return result;
   }
 
   mapper(item: vehicleDto) {
@@ -50,8 +83,6 @@ export class VehiclesGridComponent implements OnChanges {
       statusName: (statusFiltered) ? statusFiltered.status : item.status,
       statusColor: (statusFiltered) ? statusFiltered.color : 'black'
     };
-  }
-  constructor(private snackBar: MatSnackBar) {
   }
 
   onChangeRealTime(isChecked: boolean) {

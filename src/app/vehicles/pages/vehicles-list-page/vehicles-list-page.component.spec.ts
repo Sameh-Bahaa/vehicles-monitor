@@ -13,6 +13,7 @@ import { VehiclesActions } from 'src/app/store/vehicles/all-vehicles/actions';
 import { FirebaseService } from 'src/app/core/firebase/firebase.service';
 import { MatSnackBar } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { of } from 'rxjs';
 
 describe('VehiclesListPageComponent', () => {
   let component: VehiclesListPageComponent;
@@ -20,20 +21,45 @@ describe('VehiclesListPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, TranslateModule.forRoot(), MaterialModule,  StoreModule.forRoot({}), BrowserAnimationsModule],
-      declarations: [ VehiclesListPageComponent, FirebaseBackendSimulatorComponent, VehiclesFilterComponent, VehiclesGridComponent ],
+      imports: [ReactiveFormsModule, TranslateModule.forRoot(), MaterialModule, StoreModule.forRoot({}), BrowserAnimationsModule],
+      declarations: [VehiclesListPageComponent, FirebaseBackendSimulatorComponent, VehiclesFilterComponent, VehiclesGridComponent],
       providers: [VehiclesStateService, Store, VehiclesActions, FirebaseService, MatSnackBar]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(VehiclesListPageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    //fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialize the lists and get empty array', () => {
+    let vehicles = [];
+    let client = [];
+    let status = [];
+
+    // component.vehicles$.subscribe(v => vehicles = v);
+    // component.clients$.subscribe(c => client = c);
+    // component.status$.subscribe(s => status = s);
+
+    expect(vehicles.length).toBe(0);
+    expect(client.length).toBe(0);
+    expect(status.length).toBe(0);
+  });
+
+  describe('onIsRealTimeChanged', () => {
+    it('should set the isStartListening input variable to be true when true', () => {
+      let boolVal = false;
+
+      component.onIsRealTimeChanged(true);
+      component.isStartListening$.subscribe(v => { boolVal = v; })
+  
+      expect(boolVal).toBe(true)
+    })
+  })
 });

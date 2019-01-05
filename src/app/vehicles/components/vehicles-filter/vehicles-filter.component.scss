@@ -1,20 +1,21 @@
-
 .example-section {
     display: flex;
     align-content: center;
-    align-items: center;
-    height: 60px;
+    align-items: center; 
+    // height: 60px;
+    flex-wrap: wrap;
 }
 
 .example-margin {
     margin: 10px;
+    flex: 1 0 21%;
 }
 
 .mr-6 {
     margin-right: 6px;
 }
 
-.mat-standard-chip{
+.mat-standard-chip {
     background-color: #26c6da;
     color: white;
 }

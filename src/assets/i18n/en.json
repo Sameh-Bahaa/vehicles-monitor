@@ -22,7 +22,7 @@
             "sub-title" : "Real-time updates!",
             "status" : "Status",
             "client" : "Client",
-            "register" : "Register number",
+            "register" : "Reg #",
             "make" : "Vehicle make"
 
         }
@@ -35,7 +35,7 @@
             "sign-out" : "Sign Out",
             "language" : {
                 "en" : "English",
-                "sv" : "Swedish"
+                "sv" : "Svenska"
             }
         }
     }

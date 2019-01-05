@@ -22,7 +22,7 @@
             "sub-title" : "Uppdateringar i realtid!",
             "status" : "Status",
             "client" : "Klienten",
-            "register" : "Registrerings nummer",
+            "register" : "Reg #",
             "make" : "Fordonets fabrikat"
 
         }
@@ -34,7 +34,7 @@
             "settings": "Inställningar",
             "sign-out" : "Logga ut",
             "language" : {
-                "en" : "Engelska",
+                "en" : "English",
                 "sv" : "Svenska"
             }
         }

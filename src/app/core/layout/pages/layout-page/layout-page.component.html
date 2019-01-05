@@ -1,7 +1,7 @@
 <div class="main-container">
     <mat-toolbar color="primary" class="topbar telative">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" [style.display]="mobileQuery.matches ? 'block' : 'none'">
                 <!-- Logo icon -->
                 <b>
                     <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo">
@@ -21,6 +21,9 @@
         <span fxFlex style="flex: 1 1 0%;box-sizing: border-box;"></span>
 
         <veh-topnav></veh-topnav>
+        <button mat-icon-button (click)="toggleFullscreen()" [style.display]="mobileQuery.matches ? 'block' : 'none'">
+                <mat-icon>{{(isFullScreen) ? 'fullscreen_exit' : 'fullscreen'}}</mat-icon>
+            </button>
     </mat-toolbar>
 
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">

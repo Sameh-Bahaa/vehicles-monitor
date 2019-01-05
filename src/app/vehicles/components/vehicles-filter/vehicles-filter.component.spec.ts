@@ -16,10 +16,10 @@ describe('VehiclesFilterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, TranslateModule.forRoot(), MaterialModule, StoreModule.forRoot({}), BrowserAnimationsModule],
-      declarations: [ VehiclesFilterComponent ],
+      declarations: [VehiclesFilterComponent],
       providers: [VehiclesStateService, Store, VehiclesActions]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -31,4 +31,41 @@ describe('VehiclesFilterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('remove', () => {
+    beforeEach(() => {
+      component.clientsList = [
+        {
+          "id": 1,
+          "name": "Alicia Vikander",
+          "address": "Långa Gatan, Djurgården",
+          "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRfD7N18tcYI6zm-SnQqaqEHD8joHFC5RAPTUBYQx33j448Zz3sVy7qbqhsf8WF-mrXzs"
+        },
+        {
+          "id": 2,
+          "name": "Malin Åkerman",
+          "address": "Strandvägen, Östermalm",
+          "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSmqPzq3kP2mNiRFv11FGRvwss-TOwr2pVVZ8R9E9qyDsQd84biLPoZCpJDRq4NTFc8SQ"
+        },
+        {
+          "id": 3,
+          "name": "Alexander Skarsgård",
+          "address": "Svartensgatan, Södermalm",
+          "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq56Fz8kV2JXyJvxSN0Fm5hN0_KPvP6VoVn-4aCdnYpdbUnDi2V_uvvsSIdx4AtUYKTTQ"
+        }]
+      component.selectedClients = ['Alicia Vikander', 'Malin Åkerman']
+      component.currentClient = [1, 2]
+    })
+
+    it('should have only one client after removing one of the two selected clients', () => {
+      component.remove('Malin Åkerman')
+      expect(component.selectedClients.length).toBe(1)
+    })
+
+    it('should remove the item from the selected client list', () => {
+      component.remove('Malin Åkerman')
+      let c = component.selectedClients.find(c => c == 'Malin Åkerman');
+      expect(c).toBe(undefined)
+    })
+  })
 });
